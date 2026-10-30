@@ -122,6 +122,14 @@ const Logo = (props) => {
           .logo-container5 {
             display: contents;
           }
+          @media (max-width: 767px) {
+            .logo-thq-header-brand-image-elm {
+              width: auto;
+              height: 32px;
+              max-width: calc(100vw - 112px);
+              object-fit: contain;
+            }
+          }
         `}
       </style>
     </>

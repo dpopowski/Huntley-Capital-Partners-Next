@@ -175,7 +175,7 @@ const Team = (props) => {
                       </h2>
                       <p className="huntley-member-role">Co-Founder</p>
                     </div>
-                    <div className="huntley-member-action-anchor">
+                    <div className="team-thq-huntley-member-action-anchor-elm1 huntley-member-action-anchor">
                       <a
                         href="https://www.linkedin.com/in/ted-demiris-b31052201/"
                         target="_blank"
@@ -200,7 +200,7 @@ const Team = (props) => {
                       <button
                         id="btn-contact-2"
                         type="button"
-                        aria-controls="huntley-contact-panel"
+                        aria-controls="huntley-contact-modal"
                         aria-haspopup="dialog"
                         className="open-contact-trigger huntley-profile-action-btn"
                       >
@@ -227,9 +227,13 @@ const Team = (props) => {
                   <div className="huntley-member-bio-block">
                     <p className="huntley-bio-paragraph section-content">
                       Former U.S. Navy submarine officer and qualified nuclear
-                      engineer. Supported investment teams at Blackstone and
-                      Partners Group. MBA, The Wharton School; B.S. in
-                      Mechanical Engineering, U.S. Naval Academy.
+                      engineer with a Top Secret clearance. Institutional and
+                      family office investing experience at Blackstone and
+                      Partners Group, and Kamson helping acquire more than
+                      $1.4billion of real assets. Previously managed Wyndon
+                      Single-Family Debt Fund I, lending to independent mortgage
+                      bankers through full deployment and wind-down. Wharton
+                      MBA; B.S. in Mechanical Engineering, U.S. Naval Academy.
                     </p>
                   </div>
                 </div>
@@ -279,7 +283,7 @@ const Team = (props) => {
                       </h2>
                       <p className="huntley-member-role">Co-Founder</p>
                     </div>
-                    <div className="huntley-member-action-anchor">
+                    <div className="team-thq-huntley-member-action-anchor-elm2 huntley-member-action-anchor">
                       <a
                         href="https://www.linkedin.com/in/daniel-popowski/"
                         target="_blank"
@@ -304,7 +308,7 @@ const Team = (props) => {
                       <button
                         id="btn-contact"
                         type="button"
-                        aria-controls="huntley-contact-panel"
+                        aria-controls="huntley-contact-modal"
                         aria-haspopup="dialog"
                         className="open-contact-trigger huntley-profile-action-btn"
                       >
@@ -330,11 +334,15 @@ const Team = (props) => {
                   </div>
                   <div className="huntley-member-bio-block">
                     <p className="huntley-bio-paragraph section-content">
-                      Background in market analysis, valuation, and underwriting
-                      for institutional lenders and developers across the
-                      Mountain West. B.S. in Business Administration, M.S. in
-                      Finance, and Master of Real Estate Development, University
-                      of Utah. Board of Directors, USA Climbing.
+                      Eight years testing demand, pricing, and feasibility for
+                      institutional lenders and developers across the Mountain
+                      West: 30,000+ multifamily units and $3.2 billion in
+                      assets. Managed Wyndon Single-Family Debt Fund I through
+                      full deployment and wind-down, lending to independent
+                      mortgage bankers, with investor principal returned in
+                      full. B.S. in Business Administration, M.S. in Finance,
+                      and Master of Real Estate Development, University of Utah.
+                      Board of Directors, USA Climbing.
                     </p>
                   </div>
                 </div>
@@ -454,7 +462,10 @@ const Team = (props) => {
 
   if (triggerBtns && triggerBtns.length > 0) {
     triggerBtns.forEach(function(btn) {
-      btn.addEventListener('click', openPanel);
+      btn.addEventListener('click', function() {
+        const footerOpenBtn = document.getElementById('huntley-contact-open');
+        if (footerOpenBtn) footerOpenBtn.click();
+      });
     });
   }
 
@@ -482,24 +493,24 @@ const Team = (props) => {
       const u2 = 'dpopowski';
       const e1 = u1 + '@' + domain;
       const e2 = u2 + '@' + domain;
-      const p1 = '317 442 3033';
+      const p1 = '(317) 442-3033';
       const p1Raw = '+13174423033';
-      const p2 = '410 599 4177';
+      const p2 = '(410) 599-4177';
       const p2Raw = '+14105994177';
 
       if (tedContainer && tedContainer.children.length === 0) {
         tedContainer.innerHTML =
           '<div class="huntley-partner-meta">' +
             '<h4 class="huntley-partner-name">Ted Demiris</h4>' +
-            '<p class="huntley-partner-role">Co-Founder and General Partner</p>' +
+            '<p class="huntley-partner-role">Co-Founder</p>' +
           '</div>' +
           '<div class="huntley-partner-channels">' +
             '<a class="huntley-channel-link" href="mailto:' + e1 + '">' +
-              '<span class="huntley-channel-label">Email</span>' +
+              '<span class="huntley-channel-label">EMAIL</span>' +
               '<span class="huntley-channel-val">' + e1 + '</span>' +
             '</a>' +
             '<a class="huntley-channel-link" href="tel:' + p1Raw + '">' +
-              '<span class="huntley-channel-label">Telephone</span>' +
+              '<span class="huntley-channel-label">PHONE</span>' +
               '<span class="huntley-channel-val">' + p1 + '</span>' +
             '</a>' +
           '</div>';
@@ -509,15 +520,15 @@ const Team = (props) => {
         danContainer.innerHTML =
           '<div class="huntley-partner-meta">' +
             '<h4 class="huntley-partner-name">Daniel Popowski</h4>' +
-            '<p class="huntley-partner-role">Co-Founder and General Partner</p>' +
+            '<p class="huntley-partner-role">Co-Founder</p>' +
           '</div>' +
           '<div class="huntley-partner-channels">' +
             '<a class="huntley-channel-link" href="mailto:' + e2 + '">' +
-              '<span class="huntley-channel-label">Email</span>' +
+              '<span class="huntley-channel-label">EMAIL</span>' +
               '<span class="huntley-channel-val">' + e2 + '</span>' +
             '</a>' +
             '<a class="huntley-channel-link" href="tel:' + p2Raw + '">' +
-              '<span class="huntley-channel-label">Telephone</span>' +
+              '<span class="huntley-channel-label">PHONE</span>' +
               '<span class="huntley-channel-val">' + p2 + '</span>' +
             '</a>' +
           '</div>';
@@ -525,7 +536,7 @@ const Team = (props) => {
     });
   }
 })();
-})()
+})();
 </script>`}
             ></Script>
           </div>
@@ -562,12 +573,18 @@ const Team = (props) => {
                 rgba(0, 32, 91, 0.78) 58%,
                 rgba(0, 32, 91, 0.68) 100%
               ),
-              url('https://images.unsplash.com/photo-1717386255767-52643970d483?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDF8fGVsZWN0cmljJTIwY29tcG9uZW50cyUyMG1hbnVmYWN0dXJlfGVufDB8fHx8MTc5MzM5Mzg0Mnww&ixlib=rb-4.1.0&w=1500');
+              url('https://images.unsplash.com/photo-1592209659353-04eb24c5458e?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDEyfHxsaW5lc21hbnxlbnwwfHx8fDE3OTMzOTY2Mjh8MA&ixlib=rb-4.1.0&w=1500');
             background-repeat: no-repeat;
             background-position: center;
           }
           .team-text1 {
             font-weight: 700;
+          }
+          .team-thq-huntley-member-action-anchor-elm1 {
+            gap: 12px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
           }
           .team-thq-huntley-linkedin-icon-elm1 {
             width: 39px;
@@ -576,6 +593,12 @@ const Team = (props) => {
           .team-thq-huntley-portrait-img-elm2 {
             transform: scale(1.08);
             transform-origin: center top;
+          }
+          .team-thq-huntley-member-action-anchor-elm2 {
+            gap: 12px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
           }
           .team-thq-huntley-linkedin-icon-elm2 {
             width: 45px;

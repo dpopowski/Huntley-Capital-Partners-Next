@@ -9,7 +9,7 @@ import Footer from '../components/footer'
 const Strategy = (props) => {
   return (
     <>
-      <div className="strategy-container1">
+      <div className="strategy-container10 strategy-tablet-scope">
         <Head>
           <title>Investment Strategy | Huntley Capital Partners</title>
           <meta
@@ -133,9 +133,9 @@ const Strategy = (props) => {
           </div>
         </section>
         <section className="strategy-thq-strategy-addition-section-elm1 strategy-addition-section strategy-owners-section">
-          <div className="strategy-addition-inner">
+          <div className="strategy-addition-inner strategy-thq-strategy-addition-inner-elm1">
             <p className="strategy-addition-label">INVESTMENT APPROACH</p>
-            <h2 className="strategy-addition-heading">
+            <h2 className="strategy-addition-heading strategy-thq-strategy-addition-heading-elm1">
               Company builders, not financial engineers.
             </h2>
             <p className="strategy-addition-copy">
@@ -147,7 +147,7 @@ const Strategy = (props) => {
         <section className="strategy-thq-strategy-addition-section-elm2 strategy-source-section strategy-addition-section">
           <div className="strategy-thq-strategy-addition-inner-elm2 strategy-addition-inner">
             <p className="strategy-addition-label">HOW WE SOURCE</p>
-            <h2 className="strategy-addition-heading">
+            <h2 className="strategy-addition-heading strategy-thq-strategy-addition-heading-elm2">
               Relationships first. Deals follow.
             </h2>
             <p className="strategy-addition-copy">
@@ -189,7 +189,7 @@ const Strategy = (props) => {
         <section className="strategy-thq-strategy-addition-section-elm3 strategy-addition-section strategy-owners-section">
           <div className="strategy-thq-strategy-addition-inner-elm3 strategy-addition-inner">
             <p className="strategy-addition-label">FOR FOUNDERS AND OWNERS</p>
-            <h2 className="strategy-addition-heading">
+            <h2 className="strategy-addition-heading strategy-thq-strategy-addition-heading-elm3">
               Your business, built forward.
             </h2>
             <p className="strategy-addition-copy">
@@ -552,7 +552,7 @@ const Strategy = (props) => {
                   loading="eager"
                   decoding="async"
                   alt="Wide mountain landscape reflected in a calm lake"
-                  src="https://images.pexels.com/photos/35327924/pexels-photo-35327924.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=500"
+                  src="https://images.pexels.com/photos/8065813/pexels-photo-8065813.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=500"
                   fetchpriority="high"
                   className="strategy-thq-huntley-contact-landscape-photo-elm huntley-contact-landscape-photo"
                 />
@@ -642,8 +642,8 @@ const Strategy = (props) => {
             </div>
           </div>
         </div>
-        <div className="strategy-container2">
-          <div className="strategy-container3">
+        <div className="strategy-container11">
+          <div className="strategy-container12">
             <Script
               html={`<script defer data-name="huntley-strategy-controller">
 (function(){
@@ -700,24 +700,24 @@ const Strategy = (props) => {
       const u2 = 'dpopowski';
       const e1 = u1 + '@' + domain;
       const e2 = u2 + '@' + domain;
-      const p1 = '317 442 3033';
+      const p1 = '(317) 442-3033';
       const p1Raw = '+13174423033';
-      const p2 = '410 599 4177';
+      const p2 = '(410) 599-4177';
       const p2Raw = '+14105994177';
 
       if (tedContainer && tedContainer.children.length === 0) {
         tedContainer.innerHTML =
           '<div class="huntley-partner-meta">' +
             '<h4 class="huntley-partner-name">Ted Demiris</h4>' +
-            '<p class="huntley-partner-role">Co-Founder and General Partner</p>' +
+            '<p class="huntley-partner-role">Co-Founder</p>' +
           '</div>' +
           '<div class="huntley-partner-channels">' +
             '<a class="huntley-channel-link" href="mailto:' + e1 + '">' +
-              '<span class="huntley-channel-label">Email</span>' +
+              '<span class="huntley-channel-label">EMAIL</span>' +
               '<span class="huntley-channel-val">' + e1 + '</span>' +
             '</a>' +
             '<a class="huntley-channel-link" href="tel:' + p1Raw + '">' +
-              '<span class="huntley-channel-label">Telephone</span>' +
+              '<span class="huntley-channel-label">PHONE</span>' +
               '<span class="huntley-channel-val">' + p1 + '</span>' +
             '</a>' +
           '</div>';
@@ -727,15 +727,15 @@ const Strategy = (props) => {
         danContainer.innerHTML =
           '<div class="huntley-partner-meta">' +
             '<h4 class="huntley-partner-name">Daniel Popowski</h4>' +
-            '<p class="huntley-partner-role">Co-Founder and General Partner</p>' +
+            '<p class="huntley-partner-role">Co-Founder</p>' +
           '</div>' +
           '<div class="huntley-partner-channels">' +
             '<a class="huntley-channel-link" href="mailto:' + e2 + '">' +
-              '<span class="huntley-channel-label">Email</span>' +
+              '<span class="huntley-channel-label">EMAIL</span>' +
               '<span class="huntley-channel-val">' + e2 + '</span>' +
             '</a>' +
             '<a class="huntley-channel-link" href="tel:' + p2Raw + '">' +
-              '<span class="huntley-channel-label">Telephone</span>' +
+              '<span class="huntley-channel-label">PHONE</span>' +
               '<span class="huntley-channel-val">' + p2 + '</span>' +
             '</a>' +
           '</div>';
@@ -743,13 +743,13 @@ const Strategy = (props) => {
     });
   }
 })();
-})()
+})();
 </script>`}
             ></Script>
           </div>
         </div>
-        <div className="strategy-container4">
-          <div className="strategy-container5">
+        <div className="strategy-container13">
+          <div className="strategy-container14">
             <Script
               html={`<style>
 :where(h1, h2, h3, h4, h5, h6) {
@@ -760,7 +760,7 @@ const Strategy = (props) => {
           </div>
         </div>
         <div>
-          <div className="strategy-container7">
+          <div className="strategy-container16">
             <Script
               html={`<style>
 :where(h1, h2, h3, h4, h5, h6) {
@@ -864,12 +864,242 @@ const Strategy = (props) => {
   outline: 2px solid #C5B783;
   outline-offset: 3px;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .strategy-tablet-scope #strategy-overview,
+  .strategy-tablet-scope section.strategy-addition-section,
+  .strategy-tablet-scope #investment-criteria,
+  .strategy-tablet-scope #target-segments,
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding-left: 32px;
+    padding-right: 32px;
+    overflow-wrap: anywhere;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-container,
+  .strategy-tablet-scope .strategy-addition-section .strategy-addition-inner,
+  .strategy-tablet-scope #investment-criteria .huntley-criteria-inner,
+  .strategy-tablet-scope #target-segments .huntley-segments-shell,
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band .huntley-contact-band-container {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .strategy-tablet-scope #strategy-overview *,
+  .strategy-tablet-scope section.strategy-addition-section *,
+  .strategy-tablet-scope #investment-criteria *,
+  .strategy-tablet-scope #target-segments *,
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band * {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-title {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    font-size: 44px;
+    line-height: 1.15;
+  }
+  .strategy-tablet-scope #strategy-overview h2,
+  .strategy-tablet-scope section.strategy-addition-section h2,
+  .strategy-tablet-scope #investment-criteria h2.huntley-criteria-title,
+  .strategy-tablet-scope #target-segments h2.huntley-segments-heading,
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band h2.huntley-contact-band-heading {
+    font-size: 32px;
+  }
+  .strategy-tablet-scope #strategy-overview p,
+  .strategy-tablet-scope section.strategy-addition-section p,
+  .strategy-tablet-scope #investment-criteria p,
+  .strategy-tablet-scope #investment-criteria .huntley-pair-label,
+  .strategy-tablet-scope #investment-criteria .huntley-pair-value,
+  .strategy-tablet-scope #target-segments p,
+  .strategy-tablet-scope #target-segments .huntley-quad-title,
+  .strategy-tablet-scope #target-segments .huntley-quad-cell,
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band p {
+    font-size: 17px;
+  }
+  .strategy-tablet-scope #target-segments .huntley-table-overflow-frame,
+  .strategy-tablet-scope #target-segments .huntley-segments-quad-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: visible;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1024px) {
+  .strategy-tablet-scope #strategy-overview.huntley-strategy-hero {
+    min-height: auto !important;
+    padding: 32px 0 !important;
+  }
+  .strategy-tablet-scope #strategy-overview.huntley-strategy-hero .huntley-strategy-hero-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-panel,
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-main,
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-text,
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-prose {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-panel {
+    width: 100%;
+    border-left: 2px solid #C5B783;
+    padding-left: 16px;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-main {
+    padding-bottom: 0;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-title {
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    line-height: 1.15 !important;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-lead-p {
+    border-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-sub-p {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .strategy-tablet-scope #investment-criteria.huntley-strategy-criteria,
+  .strategy-tablet-scope #target-segments.huntley-strategy-segments {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .strategy-tablet-scope #investment-criteria.huntley-strategy-criteria .huntley-criteria-inner,
+  .strategy-tablet-scope #target-segments.huntley-strategy-segments .huntley-segments-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+  .strategy-tablet-scope #investment-criteria .huntley-criteria-rail {
+    display: none !important;
+  }
+  .strategy-tablet-scope #investment-criteria .huntley-criteria-layout {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .strategy-tablet-scope #investment-criteria .huntley-criteria-content,
+  .strategy-tablet-scope #investment-criteria .huntley-criteria-pairs-list {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+  .strategy-tablet-scope #investment-criteria .huntley-pair-row {
+    grid-template-columns: 30% minmax(0, 1fr);
+    gap: 16px;
+    padding: 10px 0;
+    align-items: start;
+    border-bottom: 1px solid rgba(0, 32, 91, 0.24);
+  }
+  .strategy-tablet-scope #investment-criteria .huntley-pair-label,
+  .strategy-tablet-scope #investment-criteria .huntley-pair-value {
+    font-size: 15px !important;
+    white-space: normal;
+    line-height: 1.5;
+  }
+  .strategy-tablet-scope #investment-criteria .huntley-pair-label {
+    font-weight: 700;
+  }
+  .strategy-tablet-scope #target-segments .huntley-table-overflow-frame {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+  .strategy-tablet-scope #target-segments .huntley-segments-quad-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: grid;
+    gap: 16px;
+    overflow: visible;
+    align-items: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .strategy-tablet-scope #target-segments .huntley-quad-column {
+    min-width: 0;
+    display: flex;
+    gap: 0;
+    flex-direction: column;
+  }
+  .strategy-tablet-scope #target-segments .huntley-quad-head {
+    min-height: 0;
+    padding: 14px;
+  }
+  .strategy-tablet-scope #target-segments .huntley-quad-title {
+    font-size: 16px !important;
+  }
+  .strategy-tablet-scope #target-segments .huntley-quad-body {
+    display: block;
+    padding: 14px;
+    flex: 1 1 auto;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .strategy-tablet-scope #target-segments .huntley-quad-cell {
+    display: inline;
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    min-height: 0;
+    font-size: 15px !important;
+    line-height: 1.5;
+  }
+  .strategy-tablet-scope #target-segments .huntley-quad-cell span {
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .strategy-tablet-scope #target-segments .huntley-quad-cell:not(:last-child)::after {
+    content: ' · ';
+    white-space: pre-wrap;
+  }
+  .strategy-tablet-scope #target-segments .huntley-col-td .huntley-quad-body { background-color: #F4F1E7; }
+  .strategy-tablet-scope #target-segments .huntley-col-storage .huntley-quad-body { background-color: #EFF3F2; }
+  .strategy-tablet-scope #target-segments .huntley-col-software .huntley-quad-body { background-color: #EEF2F6; }
+  .strategy-tablet-scope #target-segments .huntley-col-generation .huntley-quad-body { background-color: #EFF1F5; }
+}
+@media (max-width: 767px) {
+  .strategy-tablet-scope #strategy-overview.huntley-strategy-hero .huntley-strategy-hero-container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-title {
+    width: auto !important;
+    font-size: 32px !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+}
 </style>`}
             ></Script>
           </div>
         </div>
         <div>
-          <div className="strategy-container9">
+          <div className="strategy-container18">
             <Script
               html={`<style>
 @media (max-width: 767px) {
@@ -888,11 +1118,53 @@ section.huntley-strategy-segments {
             ></Script>
           </div>
         </div>
+        <div className="strategy-container19">
+          <div className="strategy-container20">
+            <Script
+              html={`<script>
+(function(){
+const style = document.createElement('style')
+style.textContent = \`
+@media (max-width: 1023px) {
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band .huntley-contact-band-right {
+    display: none !important;
+  }
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band .huntley-contact-band-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .strategy-tablet-scope #strategy-overview,
+  .strategy-tablet-scope section.strategy-addition-section,
+  .strategy-tablet-scope #investment-criteria,
+  .strategy-tablet-scope #target-segments,
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .strategy-tablet-scope #strategy-overview .huntley-strategy-hero-container,
+  .strategy-tablet-scope section.strategy-addition-section .strategy-addition-inner,
+  .strategy-tablet-scope #investment-criteria .huntley-criteria-inner,
+  .strategy-tablet-scope #target-segments .huntley-segments-shell,
+  .strategy-tablet-scope #contact.huntley-strategy-contact-band .huntley-contact-band-container {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 48px !important;
+    padding-right: 48px !important;
+  }
+}
+\`
+if (document.head) document.head.appendChild(style)
+})()
+</script>`}
+            ></Script>
+          </div>
+        </div>
         <Footer></Footer>
       </div>
       <style jsx>
         {`
-          .strategy-container1 {
+          .strategy-container10 {
             width: 100%;
             min-height: 100vh;
           }
@@ -1373,22 +1645,28 @@ section.huntley-strategy-segments {
             aspect-ratio: 1 / 1;
             object-position: center;
           }
-          .strategy-container2 {
+          .strategy-container11 {
             display: none;
           }
-          .strategy-container3 {
+          .strategy-container12 {
             display: contents;
           }
-          .strategy-container4 {
+          .strategy-container13 {
             display: none;
           }
-          .strategy-container5 {
+          .strategy-container14 {
             display: contents;
           }
-          .strategy-container7 {
+          .strategy-container16 {
             display: contents;
           }
-          .strategy-container9 {
+          .strategy-container18 {
+            display: contents;
+          }
+          .strategy-container19 {
+            display: none;
+          }
+          .strategy-container20 {
             display: contents;
           }
           @media (max-width: 1600px) {
@@ -1403,10 +1681,19 @@ section.huntley-strategy-segments {
           }
           @media (max-width: 767px) {
             .strategy-thq-huntley-strategy-hero-elm {
-              padding: 48px 0;
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
               min-height: auto;
             }
             .strategy-thq-huntley-strategy-hero-container-elm {
+              width: 100%;
+              padding: 0;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
               padding-left: 24px;
               padding-right: 24px;
             }
@@ -1414,36 +1701,394 @@ section.huntley-strategy-segments {
               gap: 20px;
             }
             .strategy-thq-hero-title-elm {
-              font-size: 36px;
+              font-size: 32px;
+              max-width: 100%;
+              line-height: 1.15;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-strategy-lead-p-elm {
+              font-size: 16px;
+              max-width: 100%;
+              line-height: 1.55;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-strategy-sub-p-elm {
+              font-size: 16px;
+              max-width: 100%;
+              line-height: 1.55;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-strategy-addition-section-elm1 {
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-strategy-addition-inner-elm1 {
+              width: 100%;
+              padding: 0;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-strategy-addition-heading-elm1 {
+              font-size: 26px;
+              max-width: 100%;
+              line-height: 1.2;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-strategy-addition-section-elm2 {
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-strategy-addition-inner-elm2 {
+              width: 100%;
+              padding: 0;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-strategy-addition-heading-elm2 {
+              font-size: 26px;
+              max-width: 100%;
+              line-height: 1.2;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-text10 {
+              font-size: 15px;
+              font-weight: 700;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-text12 {
+              font-size: 15px;
+              font-weight: 700;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-text14 {
+              font-size: 15px;
+              font-weight: 700;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-strategy-addition-section-elm3 {
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-strategy-addition-inner-elm3 {
+              width: 100%;
+              padding: 0;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-strategy-addition-heading-elm3 {
+              font-size: 26px;
+              max-width: 100%;
+              line-height: 1.2;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-text16 {
+              font-size: 15px;
+              font-weight: 700;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-text18 {
+              font-size: 15px;
+              font-weight: 700;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-text20 {
+              font-size: 15px;
+              font-weight: 700;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-strategy-criteria-elm {
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
             }
             .strategy-thq-huntley-criteria-inner-elm {
+              width: 100%;
+              padding: 0;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
               padding-left: 24px;
               padding-right: 24px;
+            }
+            .strategy-thq-section-title-elm1 {
+              font-size: 26px;
+              max-width: 100%;
+              line-height: 1.2;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
             .strategy-thq-huntley-pair-row-elm1 {
-              grid-template-columns: minmax(0, 1fr);
+              gap: 10px;
+              width: 100%;
+              display: grid;
+              padding: 10px 0;
+              min-width: 0;
+              box-sizing: border-box;
+              align-items: start;
+              grid-template-columns: 38% minmax(0, 1fr);
+            }
+            .strategy-thq-huntley-pair-label-elm1 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              font-weight: 700;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-pair-value-elm1 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
             .strategy-thq-huntley-pair-row-elm2 {
-              grid-template-columns: minmax(0, 1fr);
+              gap: 10px;
+              width: 100%;
+              display: grid;
+              padding: 10px 0;
+              min-width: 0;
+              box-sizing: border-box;
+              align-items: start;
+              grid-template-columns: 38% minmax(0, 1fr);
+            }
+            .strategy-thq-huntley-pair-label-elm2 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              font-weight: 700;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-pair-value-elm2 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
             .strategy-thq-huntley-pair-row-elm3 {
-              grid-template-columns: minmax(0, 1fr);
+              gap: 10px;
+              width: 100%;
+              display: grid;
+              padding: 10px 0;
+              min-width: 0;
+              box-sizing: border-box;
+              align-items: start;
+              grid-template-columns: 38% minmax(0, 1fr);
+            }
+            .strategy-thq-huntley-pair-label-elm3 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              font-weight: 700;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-pair-value-elm3 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
             .strategy-thq-huntley-pair-row-elm4 {
-              grid-template-columns: minmax(0, 1fr);
+              gap: 10px;
+              width: 100%;
+              display: grid;
+              padding: 10px 0;
+              min-width: 0;
+              box-sizing: border-box;
+              align-items: start;
+              grid-template-columns: 38% minmax(0, 1fr);
+            }
+            .strategy-thq-huntley-pair-label-elm4 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              font-weight: 700;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-pair-value-elm4 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
             .strategy-thq-huntley-pair-row-elm5 {
-              grid-template-columns: minmax(0, 1fr);
+              gap: 10px;
+              width: 100%;
+              display: grid;
+              padding: 10px 0;
+              min-width: 0;
+              box-sizing: border-box;
+              align-items: start;
+              grid-template-columns: 38% minmax(0, 1fr);
+            }
+            .strategy-thq-huntley-pair-label-elm5 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              font-weight: 700;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-pair-value-elm5 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
             .strategy-thq-huntley-pair-row-elm6 {
-              grid-template-columns: minmax(0, 1fr);
+              gap: 10px;
+              width: 100%;
+              display: grid;
+              padding: 10px 0;
+              min-width: 0;
+              box-sizing: border-box;
+              align-items: start;
+              grid-template-columns: 38% minmax(0, 1fr);
+            }
+            .strategy-thq-huntley-pair-label-elm6 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              font-weight: 700;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-pair-value-elm6 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
             .strategy-thq-huntley-pair-row-elm7 {
-              grid-template-columns: minmax(0, 1fr);
+              gap: 10px;
+              width: 100%;
+              display: grid;
+              padding: 10px 0;
+              min-width: 0;
+              box-sizing: border-box;
+              align-items: start;
+              grid-template-columns: 38% minmax(0, 1fr);
+            }
+            .strategy-thq-huntley-pair-label-elm7 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              font-weight: 700;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-pair-value-elm7 {
+              width: auto;
+              font-size: 14px;
+              min-width: 0;
+              box-sizing: border-box;
+              line-height: 1.45;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-strategy-segments-elm {
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
             }
             .strategy-thq-huntley-segments-shell-elm {
+              width: 100%;
+              padding: 0;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
               padding-left: 24px;
               padding-right: 24px;
+            }
+            .strategy-thq-section-title-elm2 {
+              font-size: 26px;
+              max-width: 100%;
+              line-height: 1.2;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
+            .strategy-thq-huntley-strategy-contact-band-elm {
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-huntley-contact-band-container-elm {
+              width: 100%;
+              padding: 0;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+            }
+            .strategy-thq-section-title-elm3 {
+              font-size: 26px;
+              max-width: 100%;
+              line-height: 1.2;
+              white-space: normal;
+              overflow-wrap: anywhere;
             }
           }
         `}

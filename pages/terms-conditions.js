@@ -747,6 +747,19 @@ const TermsConditions = (props) => {
             font-size: 15px;
             line-height: 1.75;
           }
+          @media (max-width: 767px) {
+            .terms-conditions-thq-terms-content-elm {
+              width: 100%;
+              padding: 48px 24px;
+              max-width: 100%;
+              min-width: 0;
+              box-sizing: border-box;
+              overflow-wrap: anywhere;
+            }
+            .terms-conditions-thq-last-updated-october302026-elm {
+              font-size: 12px !important;
+            }
+          }
         `}
       </style>
     </>

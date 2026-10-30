@@ -11,7 +11,7 @@ import Footer from '../components/footer'
 const Homepage = (props) => {
   return (
     <>
-      <div className="homepage-container1">
+      <div className="homepage-container1 home-mobile-fixes">
         <Head>
           <title>
             Huntley Capital Partners | Power Infrastructure Investing
@@ -226,7 +226,7 @@ const Homepage = (props) => {
                     loading="eager"
                     decoding="async"
                     alt="Industrial substation conductors, heavy transformers, and structural steel framing"
-                    src="https://images.unsplash.com/photo-1717386255785-59c670564341?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDEyfHxiYXR0ZXJ5JTIwZW5lcmd5JTIwc3RvcmFnZSUyMHNvbHV0aW9ufGVufDB8fHx8MTc5MzM3OTQyMXww&amp;ixlib=rb-4.1.0&amp;w=1500"
+                    src="/unsplash-image8-1500w.jpeg"
                     className="huntley-thesis-img"
                   />
                   <video
@@ -569,83 +569,83 @@ const Homepage = (props) => {
   const revealedBox = document.getElementById('huntley-revealed-box');
   const tedContainer = document.getElementById('partner-ted-container');
   const danContainer = document.getElementById('partner-dan-container');
-
+ 
   function openPanel() {
     if (!panel) return;
     panel.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
   }
-
+ 
   function closePanel() {
     if (!panel) return;
     panel.setAttribute('hidden', '');
     document.body.style.overflow = '';
   }
-
+ 
   if (heroBtn) {
     heroBtn.addEventListener('click', openPanel);
   }
-
+ 
   if (closeBtn) {
     closeBtn.addEventListener('click', closePanel);
   }
-
+ 
   if (backdrop) {
     backdrop.addEventListener('click', closePanel);
   }
-
+ 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && panel && !panel.hasAttribute('hidden')) {
       closePanel();
     }
   });
-
+ 
   if (revealTrigger) {
     revealTrigger.addEventListener('click', function() {
       if (revealGate) revealGate.setAttribute('hidden', '');
       if (revealedBox) revealedBox.removeAttribute('hidden');
-
+ 
       const domain = 'huntleycp.com';
       const u1 = 'tdemiris';
       const u2 = 'dpopowski';
       const e1 = u1 + '@' + domain;
       const e2 = u2 + '@' + domain;
-      const p1 = '317 442 3033';
+      const p1 = '(317) 442-3033';
       const p1Raw = '+13174423033';
-      const p2 = '410 599 4177';
+      const p2 = '(410) 599-4177';
       const p2Raw = '+14105994177';
-
+ 
       if (tedContainer && tedContainer.children.length === 0) {
         tedContainer.innerHTML =
           '<div class="huntley-partner-meta">' +
             '<h4 class="huntley-partner-name">Ted Demiris</h4>' +
-            '<p class="huntley-partner-role">Co-Founder and General Partner</p>' +
+            '<p class="huntley-partner-role">Co-Founder</p>' +
           '</div>' +
           '<div class="huntley-partner-channels">' +
             '<a class="huntley-channel-link" href="mailto:' + e1 + '">' +
-              '<span class="huntley-channel-label">Email</span>' +
+              '<span class="huntley-channel-label">EMAIL</span>' +
               '<span class="huntley-channel-val">' + e1 + '</span>' +
             '</a>' +
             '<a class="huntley-channel-link" href="tel:' + p1Raw + '">' +
-              '<span class="huntley-channel-label">Telephone</span>' +
+              '<span class="huntley-channel-label">PHONE</span>' +
               '<span class="huntley-channel-val">' + p1 + '</span>' +
             '</a>' +
           '</div>';
       }
-
+ 
       if (danContainer && danContainer.children.length === 0) {
         danContainer.innerHTML =
           '<div class="huntley-partner-meta">' +
             '<h4 class="huntley-partner-name">Daniel Popowski</h4>' +
-            '<p class="huntley-partner-role">Co-Founder and General Partner</p>' +
+            '<p class="huntley-partner-role">Co-Founder</p>' +
           '</div>' +
           '<div class="huntley-partner-channels">' +
             '<a class="huntley-channel-link" href="mailto:' + e2 + '">' +
-              '<span class="huntley-channel-label">Email</span>' +
+              '<span class="huntley-channel-label">EMAIL</span>' +
               '<span class="huntley-channel-val">' + e2 + '</span>' +
             '</a>' +
             '<a class="huntley-channel-link" href="tel:' + p2Raw + '">' +
-              '<span class="huntley-channel-label">Telephone</span>' +
+              '<span class="huntley-channel-label">PHONE</span>' +
               '<span class="huntley-channel-val">' + p2 + '</span>' +
             '</a>' +
           '</div>';
@@ -653,7 +653,7 @@ const Homepage = (props) => {
     });
   }
 })();
-})()
+})();
 </script>`}
             ></Script>
           </div>
@@ -668,6 +668,44 @@ const Homepage = (props) => {
 }
 :where(h1, h2, h3, h4, h5, h6) {
   overflow-wrap: break-word;
+}
+#huntley-contact-panel .huntley-partner-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #00205B;
+}
+#huntley-contact-panel .huntley-channel-link {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+#huntley-contact-panel .huntley-channel-label {
+  color: #C5B783;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+#huntley-contact-panel .huntley-channel-val {
+  color: #00205B;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .home-mobile-fixes .huntley-hero-container,
+  .home-mobile-fixes .huntley-overview .huntley-overview-container,
+  .home-mobile-fixes .huntley-thesis .huntley-thesis-container,
+  .home-mobile-fixes .huntley-question-container,
+  .home-mobile-fixes .home-leadership .home-leadership-inner {
+    padding-left: 48px;
+    padding-right: 48px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .home-mobile-fixes .huntley-question-statement {
+    width: calc(100% - 96px);
+  }
 }
 </style>`}
             ></Script>

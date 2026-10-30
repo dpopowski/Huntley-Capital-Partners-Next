@@ -95,23 +95,17 @@ const Contact = (props) => {
           />
         </Head>
         <Navigation></Navigation>
-        <section
-          id="tq-main"
-          className="contact-partner-card contact-huntley-section"
-        >
-          <div className="contact-huntley-container">
-            <div className="contact-huntley-grid">
-              <div className="contact-huntley-left">
-                <div className="contact-huntley-eyebrow-wrap">
-                  <span className="contact-huntley-eyebrow">
-                    Institutional Inquiries
-                  </span>
-                  <div className="contact-huntley-eyebrow-rule"></div>
+        <section id="tq-main" className="contact-editorial-section">
+          <div className="contact-editorial-container">
+            <div className="contact-editorial-layout">
+              <div className="contact-editorial-copy">
+                <div className="contact-editorial-eyebrow-wrap">
+                  <span className="contact-editorial-label">Inquiries</span>
                 </div>
-                <h1 className="contact-huntley-title hero-title">
-                  Direct Partner Access
+                <h1 className="hero-title contact-editorial-heading">
+                  Contact Us
                 </h1>
-                <p className="contact-huntley-intro section-content">
+                <p className="section-content contact-editorial-intro">
                   {' '}
                   We welcome direct engagement from lead investors, prospective
                   co-investors, operating executives, and owners or founders of
@@ -122,129 +116,43 @@ const Contact = (props) => {
                     }}
                   />
                 </p>
-                <div className="contact-huntley-rail-block">
-                  <div
-                    aria-hidden="true"
-                    data-abs-child-fixed="true"
-                    className="contact-thq-contact-huntley-rail-line-elm contact-huntley-rail-line"
+                <div className="contact-editorial-action-wrap">
+                  <button
+                    id="openContactModalBtn"
+                    type="button"
+                    className="btn-primary btn contact-editorial-button"
                   >
-                    <div className="contact-huntley-rail-dot"></div>
-                  </div>
-                  <div className="contact-huntley-directory">
-                    <div className="contact-huntley-item">
-                      <span className="contact-huntley-item-label">
-                        Firm Leadership
-                      </span>
-                      <p className="contact-huntley-item-val">
-                        Ted Demiris &amp; Daniel Popowski
-                      </p>
-                      <span className="contact-huntley-item-sub">
-                        Co-Founders &amp; General Partners
-                      </span>
-                    </div>
-                    <div className="contact-huntley-item">
-                      <span className="contact-huntley-item-label">
-                        Principal Locations
-                      </span>
-                      <p className="contact-huntley-item-val">
-                        Annapolis, Maryland &amp; Salt Lake City, Utah
-                      </p>
-                    </div>
-                    <div className="contact-huntley-action-wrap">
-                      <button
-                        id="openContactModalBtn"
-                        type="button"
-                        className="contact-huntley-trigger-btn contact-btn btn-primary btn"
-                      >
-                        {' '}
-                        Get in touch
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: ' ',
-                          }}
-                        />
-                      </button>
-                    </div>
-                  </div>
+                    <span>
+                      {' '}
+                      Get in touch
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: ' ',
+                        }}
+                      />
+                    </span>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M3 9h11M9 4l5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </svg>
+                  </button>
                 </div>
-              </div>
-              <div aria-hidden="true" className="contact-huntley-right">
-                <div className="contact-huntley-orbital-stage">
-                  <svg
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 600 600"
-                    className="contact-huntley-orbital-svg"
-                  >
-                    <circle
-                      r="280"
-                      cx="300"
-                      cy="300"
-                      stroke="rgba(0, 32, 91, 0.08)"
-                      strokeWidth="1.2"
-                      strokeDasharray="4 6"
-                    ></circle>
-                    <circle
-                      r="220"
-                      cx="300"
-                      cy="300"
-                      stroke="rgba(0, 32, 91, 0.12)"
-                      strokeWidth="1.5"
-                    ></circle>
-                    <ellipse
-                      cx="300"
-                      cy="300"
-                      rx="270"
-                      ry="140"
-                      stroke="#C5B783"
-                      transform="rotate(-25 300 300)"
-                      strokeWidth="1"
-                      strokeOpacity="0.45"
-                    ></ellipse>
-                    <ellipse
-                      cx="300"
-                      cy="300"
-                      rx="210"
-                      ry="90"
-                      stroke="rgba(0, 32, 91, 0.15)"
-                      transform="rotate(35 300 300)"
-                      strokeWidth="1.2"
-                    ></ellipse>
-                    <circle
-                      r="140"
-                      cx="300"
-                      cy="300"
-                      stroke="rgba(0, 32, 91, 0.2)"
-                      strokeWidth="1.5"
-                    ></circle>
-                    <circle
-                      r="70"
-                      cx="300"
-                      cy="300"
-                      stroke="#C5B783"
-                      strokeWidth="1.2"
-                    ></circle>
-                    <line
-                      x1="60"
-                      x2="540"
-                      y1="300"
-                      y2="300"
-                      stroke="rgba(0, 32, 91, 0.1)"
-                      strokeWidth="1"
-                    ></line>
-                    <line
-                      x1="300"
-                      x2="300"
-                      y1="60"
-                      y2="540"
-                      stroke="rgba(0, 32, 91, 0.1)"
-                      strokeWidth="1"
-                    ></line>
-                    <circle r="4" cx="120" cy="220" fill="#00205B"></circle>
-                    <circle r="4" cx="480" cy="380" fill="#00205B"></circle>
-                    <circle r="3" cx="300" cy="70" fill="#C5B783"></circle>
-                    <circle r="5" cx="300" cy="300" fill="#00205B"></circle>
-                  </svg>
+                <div className="contact-editorial-directory-wrap">
+                  <div className="contact-editorial-directory">
+                    <div className="contact-thq-contact-huntley-item-elm1 contact-editorial-item"></div>
+                    <div className="contact-thq-contact-huntley-item-elm2 contact-editorial-item"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -321,121 +229,6 @@ const Contact = (props) => {
             </div>
           </dialog>
         </section>
-        <section className="office-locations-section">
-          <div className="office-locations-container">
-            <div className="office-locations-header">
-              <div className="office-locations-eyebrow-row">
-                <span className="office-locations-eyebrow">
-                  Geographic Presence
-                </span>
-                <div className="office-locations-rule"></div>
-              </div>
-              <h2 className="section-title office-locations-title">
-                Principal Offices
-              </h2>
-              <p className="office-locations-subtitle section-content">
-                {' '}
-                Anchored across the Mid-Atlantic corridor and Intermountain West
-                to maintain proximity to capital partners and infrastructure
-                assets.
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: ' ',
-                  }}
-                />
-              </p>
-            </div>
-            <div className="office-locations-grid">
-              <article className="office-card">
-                <div className="office-card-media">
-                  <img
-                    loading="eager"
-                    decoding="async"
-                    alt="Substation and high-voltage transmission lines near the Eastern Seaboard"
-                    src="https://images.pexels.com/photos/9889055/pexels-photo-9889055.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=1500"
-                    fetchpriority="high"
-                    className="office-card-img"
-                  />
-                </div>
-                <div className="office-card-content">
-                  <div className="office-card-header">
-                    <span className="office-card-state">Maryland</span>
-                    <h3 className="office-card-city team-reference-title">
-                      Annapolis
-                    </h3>
-                  </div>
-                  <div className="office-card-details">
-                    <p className="team-reference-text office-card-region">
-                      Annapolis, Maryland
-                    </p>
-                    <p className="section-content office-card-focus">
-                      Mid-Atlantic Operations &amp; Grid Strategy
-                    </p>
-                  </div>
-                  <div className="office-card-action">
-                    <button
-                      id="btn-contact-annapolis-office"
-                      type="button"
-                      data-modal-open="annapolis"
-                      className="office-card-btn contact-btn btn-outline btn"
-                    >
-                      {' '}
-                      Contact Annapolis Office
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </button>
-                  </div>
-                </div>
-              </article>
-              <article className="office-card">
-                <div className="office-card-media">
-                  <img
-                    loading="eager"
-                    decoding="async"
-                    alt="Electrical substation infrastructure with steel structures and transmission lines"
-                    src="https://images.pexels.com/photos/18468536/pexels-photo-18468536.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=1500"
-                    className="office-card-img"
-                  />
-                </div>
-                <div className="office-card-content">
-                  <div className="office-card-header">
-                    <span className="office-card-state">Utah</span>
-                    <h3 className="office-card-city team-reference-title">
-                      Salt Lake City
-                    </h3>
-                  </div>
-                  <div className="office-card-details">
-                    <p className="team-reference-text office-card-region">
-                      Salt Lake City, Utah
-                    </p>
-                    <p className="section-content office-card-focus">
-                      Intermountain &amp; Western Infrastructure
-                    </p>
-                  </div>
-                  <div className="office-card-action">
-                    <button
-                      id="btn-contact-salt-lake-city-office"
-                      type="button"
-                      data-modal-open="saltlake"
-                      className="office-card-btn contact-btn btn-outline btn"
-                    >
-                      {' '}
-                      Contact Salt Lake City Office
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: ' ',
-                        }}
-                      />
-                    </button>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
         <div className="contact-container2">
           <div className="contact-container3">
             <Script
@@ -500,56 +293,48 @@ const Contact = (props) => {
 
       const d = 'huntleycp.com';
       const p1User = 'tdemiris';
-      const p1Phone = '317' + ' 442 ' + '3033';
+      const p1Phone = '(317) ' + '442-' + '3033';
       const p1Tel = '+13174423033';
       const p1Email = p1User + '@' + d;
 
       const p2User = 'dpopowski';
-      const p2Phone = '410' + ' 599 ' + '4177';
+      const p2Phone = '(410) ' + '599-' + '4177';
       const p2Tel = '+14105994177';
       const p2Email = p2User + '@' + d;
 
       const p1Card = document.createElement('div');
       p1Card.className = 'contact-partner-card';
       p1Card.innerHTML = \`
-        <div class="contact-partner-role-badge">Co-Founder & General Partner</div>
+        <div class="contact-partner-role-badge">Co-Founder</div>
         <h3 class="team-reference-title contact-partner-name">Ted Demiris</h3>
         <p class="section-content contact-partner-bio-note">Nuclear engineering credibility, institutional investment experience, firm generation, and grid reliability.</p>
-        <div class="contact-methods-list">
-          <a class="contact-method-link" href="mailto:\${p1Email}">
-            <span class="contact-method-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg>
-            </span>
-            <span class="contact-method-text">\${p1Email}</span>
-          </a>
-          <a class="contact-method-link" href="tel:\${p1Tel}">
-            <span class="contact-method-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384"/></svg>
-            </span>
-            <span class="contact-method-text">\${p1Phone}</span>
-          </a>
+        <div class="contact-reveal-fields">
+          <div class="contact-reveal-field">
+            <span class="contact-reveal-label">EMAIL</span>
+            <a class="contact-reveal-value" href="mailto:\${p1Email}">\${p1Email}</a>
+          </div>
+          <div class="contact-reveal-field">
+            <span class="contact-reveal-label">PHONE</span>
+            <a class="contact-reveal-value" href="tel:\${p1Tel}">\${p1Phone}</a>
+          </div>
         </div>
       \`;
 
       const p2Card = document.createElement('div');
       p2Card.className = 'contact-partner-card';
       p2Card.innerHTML = \`
-        <div class="contact-partner-role-badge">Co-Founder & General Partner</div>
+        <div class="contact-partner-role-badge">Co-Founder</div>
         <h3 class="team-reference-title contact-partner-name">Daniel Popowski</h3>
         <p class="section-content contact-partner-bio-note">Underwriting, market-analysis, and execution perspective across capital-intensive infrastructure and development.</p>
-        <div class="contact-methods-list">
-          <a class="contact-method-link" href="mailto:\${p2Email}">
-            <span class="contact-method-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg>
-            </span>
-            <span class="contact-method-text">\${p2Email}</span>
-          </a>
-          <a class="contact-method-link" href="tel:\${p2Tel}">
-            <span class="contact-method-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384"/></svg>
-            </span>
-            <span class="contact-method-text">\${p2Phone}</span>
-          </a>
+        <div class="contact-reveal-fields">
+          <div class="contact-reveal-field">
+            <span class="contact-reveal-label">EMAIL</span>
+            <a class="contact-reveal-value" href="mailto:\${p2Email}">\${p2Email}</a>
+          </div>
+          <div class="contact-reveal-field">
+            <span class="contact-reveal-label">PHONE</span>
+            <a class="contact-reveal-value" href="tel:\${p2Tel}">\${p2Phone}</a>
+          </div>
         </div>
       \`;
 
@@ -583,6 +368,12 @@ const Contact = (props) => {
 :where(h1, h2, h3, h4, h5, h6) {
   overflow-wrap: break-word;
 }
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .contact-editorial-container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
 </style>`}
             ></Script>
           </div>
@@ -594,9 +385,13 @@ const Contact = (props) => {
           .contact-container1 {
             width: 100%;
             min-height: 100vh;
+            background-color: #ffffff;
           }
-          .contact-thq-contact-huntley-rail-line-elm {
-            min-height: 7px;
+          .contact-thq-contact-huntley-item-elm1 {
+            border: 2px dashed rgba(120, 120, 120, 0.4);
+          }
+          .contact-thq-contact-huntley-item-elm2 {
+            border: 2px dashed rgba(120, 120, 120, 0.4);
           }
           .contact-container2 {
             display: none;
