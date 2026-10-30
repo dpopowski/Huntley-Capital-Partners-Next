@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://well-to-do-potable-mole-yvavdo.teleporthq.site/sitemap.xml

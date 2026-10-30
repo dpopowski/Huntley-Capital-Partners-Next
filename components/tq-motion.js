@@ -1,0 +1,641 @@
+import React from 'react'
+import { motion, useInView, useMotionValueEvent, useReducedMotion, useScroll, useSpring } from 'framer-motion'
+
+const EASINGS = {
+  ease: [0.25, 0.1, 0.25, 1],
+  'ease-in': [0.42, 0, 1, 1],
+  'ease-out': [0, 0, 0.58, 1],
+  'ease-in-out': [0.42, 0, 0.58, 1],
+  linear: [0, 0, 1, 1],
+  spring: [0.34, 1.56, 0.64, 1],
+  back: [0.68, -0.6, 0.32, 1.6],
+  bounce: [0.22, 1.2, 0.36, 1],
+}
+
+// Mirrors the canvas renderer's motion-keyframes helpers so a scroll-linked
+// element interpolates EVERY from/to property (x/y/scale/rotate/opacity/filter)
+// identically in the canvas, the preview and the published site. The key ORDER
+// is the order the canvas composes them in: it has to match `cssFromState` in
+// the renderer's motion-keyframes exactly, or a staggered card and its canvas
+// twin would compose the same values differently. Both the scroll-linked path
+// (`applyScrollState`) and the in-place stagger (`cssFromState`) build on these.
+const TRANSFORM_KEYS = ['x', 'y', 'scale', 'rotate']
+
+// The transform family is written as the INDIVIDUAL transform properties
+// (translate / scale / rotate) and never as the transform property itself, so
+// whatever the author put in transform (a translateX(-50%) centering, a tilt)
+// survives the animation and the browser composes the two. Mirrors the canvas.
+const withUnit = (value, unit) => (typeof value === 'number' ? value + unit : String(value))
+
+const writeTransformProps = (css, state) => {
+  if (state.x !== undefined || state.y !== undefined) {
+    css.translate =
+      withUnit(state.x !== undefined ? state.x : 0, 'px') +
+      ' ' +
+      withUnit(state.y !== undefined ? state.y : 0, 'px')
+  }
+  if (state.scale !== undefined) {
+    css.scale = String(state.scale)
+  }
+  if (state.rotate !== undefined) {
+    css.rotate = withUnit(state.rotate, 'deg')
+  }
+}
+
+// Composed filters (blur(10px) grayscale(1) -> blur(0px) grayscale(0))
+// interpolate function-by-function when both sides carry the same sequence —
+// mirrors the canvas contract.
+const FILTER_LIST_RE = /^(?:[a-z-]+\(\s*-?\d*\.?\d+(?:px|deg|%)?\s*\)\s*)+$/
+const FILTER_FN_RE = /([a-z-]+)\(\s*(-?\d*\.?\d+)(px|deg|%)?\s*\)/g
+
+const interpolateFilter = (from, to, p) => {
+  if (!FILTER_LIST_RE.test(from.trim()) || !FILTER_LIST_RE.test(to.trim())) {
+    return null
+  }
+  const fromFns = Array.from(from.matchAll(FILTER_FN_RE))
+  const toFns = Array.from(to.matchAll(FILTER_FN_RE))
+  if (fromFns.length !== toFns.length || fromFns.length === 0) {
+    return null
+  }
+  const parts = []
+  for (let index = 0; index < fromFns.length; index++) {
+    const fn = fromFns[index][1]
+    const unit = fromFns[index][3] || ''
+    if (fn !== toFns[index][1] || unit !== (toFns[index][3] || '')) {
+      return null
+    }
+    const value =
+      parseFloat(fromFns[index][2]) +
+      (parseFloat(toFns[index][2]) - parseFloat(fromFns[index][2])) * p
+    parts.push(fn + '(' + value + unit + ')')
+  }
+  return parts.join(' ')
+}
+
+// A value with a unit (-50%, 2rem) glides in that unit when both ends use the
+// same one, as it does on the canvas. A played entrance gets this from
+// framer-motion or the Web Animations API; the scroll-linked path gets it here.
+const UNIT_VALUE_RE = /^(-?\d*\.?\d+)(px|%|deg|rem|em|vw|vh)$/
+
+const interpolateUnitValue = (from, to, p) => {
+  const start = UNIT_VALUE_RE.exec(from.trim())
+  const end = UNIT_VALUE_RE.exec(to.trim())
+  if (!start || !end || start[2] !== end[2]) {
+    return null
+  }
+  const startAmount = parseFloat(start[1])
+  return startAmount + (parseFloat(end[1]) - startAmount) * p + start[2]
+}
+
+const interpolateValue = (from, to, p) => {
+  if (typeof from === 'number' && typeof to === 'number') {
+    return from + (to - from) * p
+  }
+  if (typeof from === 'string' && typeof to === 'string') {
+    const united = interpolateUnitValue(from, to, p)
+    if (united !== null) {
+      return united
+    }
+    const filter = interpolateFilter(from, to, p)
+    if (filter !== null) {
+      return filter
+    }
+  }
+  return p >= 1 ? to : from
+}
+
+const applyScrollState = (element, fromVars, toVars, p) => {
+  if (!element) {
+    return
+  }
+  const keys = new Set([...Object.keys(fromVars), ...Object.keys(toVars)])
+  const transformState = {}
+  keys.forEach((key) => {
+    const fromValue = fromVars[key] !== undefined ? fromVars[key] : toVars[key]
+    const toValue = toVars[key] !== undefined ? toVars[key] : fromVars[key]
+    const value = interpolateValue(fromValue, toValue, p)
+    if (TRANSFORM_KEYS.includes(key)) {
+      transformState[key] = value
+    } else {
+      element.style[key] = String(value)
+    }
+  })
+  const transformCss = {}
+  writeTransformProps(transformCss, transformState)
+  Object.keys(transformCss).forEach((prop) => {
+    element.style[prop] = transformCss[prop]
+  })
+}
+
+// useScroll offset pairs per motion-scroll-offset mode — mirrors the canvas
+// runtime's scrollProgressForOffset semantics.
+const SCROLL_OFFSET_RANGES = {
+  pass: ['start end', 'end start'],
+  contained: ['start start', 'end end'],
+  enter: ['start end', 'start start'],
+  exit: ['end end', 'end start'],
+}
+
+const presetStates = (preset, distance) => {
+  switch (preset) {
+    case 'fade-in':
+      return { from: { opacity: 0 }, to: { opacity: 1 } }
+    case 'slide-up':
+      return { from: { opacity: 0, y: distance }, to: { opacity: 1, y: 0 } }
+    case 'slide-down':
+      return { from: { opacity: 0, y: -distance }, to: { opacity: 1, y: 0 } }
+    case 'slide-left':
+      return { from: { opacity: 0, x: distance }, to: { opacity: 1, x: 0 } }
+    case 'slide-right':
+      return { from: { opacity: 0, x: -distance }, to: { opacity: 1, x: 0 } }
+    case 'scale-in':
+      return { from: { opacity: 0, scale: 0.8 }, to: { opacity: 1, scale: 1 } }
+    case 'zoom-in':
+      return { from: { opacity: 0, scale: 0.5 }, to: { opacity: 1, scale: 1 } }
+    case 'pop-in':
+      return { from: { opacity: 0, scale: 0.6 }, to: { opacity: 1, scale: 1 } }
+    case 'rotate-in':
+      return { from: { opacity: 0, rotate: -8 }, to: { opacity: 1, rotate: 0 } }
+    case 'tilt-in':
+      return { from: { opacity: 0, rotate: -10, y: distance }, to: { opacity: 1, rotate: 0, y: 0 } }
+    case 'blur-in':
+      return { from: { opacity: 0, filter: 'blur(12px)' }, to: { opacity: 1, filter: 'blur(0px)' } }
+    case 'blur-up':
+      return {
+        from: { opacity: 0, y: distance, filter: 'blur(8px)' },
+        to: { opacity: 1, y: 0, filter: 'blur(0px)' },
+      }
+    case 'drop-in':
+      return {
+        from: { opacity: 0, y: -distance, scale: 1.05 },
+        to: { opacity: 1, y: 0, scale: 1 },
+      }
+    case 'swing-in':
+      return { from: { opacity: 0, rotate: -20, y: distance }, to: { opacity: 1, rotate: 0, y: 0 } }
+    case 'spin-in':
+      return {
+        from: { opacity: 0, rotate: -180, scale: 0.6 },
+        to: { opacity: 1, rotate: 0, scale: 1 },
+      }
+    case 'blur-zoom':
+      return {
+        from: { opacity: 0, scale: 1.35, filter: 'blur(10px)' },
+        to: { opacity: 1, scale: 1, filter: 'blur(0px)' },
+      }
+    case 'zoom-out':
+      return { from: { opacity: 0, scale: 1.4 }, to: { opacity: 1, scale: 1 } }
+    case 'develop':
+      return {
+        from: { opacity: 0, filter: 'blur(6px) grayscale(1)' },
+        to: { opacity: 1, filter: 'blur(0px) grayscale(0)' },
+      }
+    case 'glow-in':
+      return {
+        from: { opacity: 0, filter: 'brightness(1.8) saturate(0.4)' },
+        to: { opacity: 1, filter: 'brightness(1) saturate(1)' },
+      }
+    // Attention loops: rest at the natural state (NO opacity ramp — a looping
+    // opacity would strobe) and read as animation only when repeated (mirror).
+    case 'pulse':
+      return { from: { scale: 1 }, to: { scale: 1.06 } }
+    case 'float':
+      return { from: { y: 0 }, to: { y: -12 } }
+    case 'spin':
+      return { from: { rotate: 0 }, to: { rotate: 360 } }
+    case 'wobble':
+      return { from: { rotate: -3 }, to: { rotate: 3 } }
+    case 'none':
+      return { from: {}, to: {} }
+    default:
+      return { from: { opacity: 0 }, to: { opacity: 1 } }
+  }
+}
+
+// Turn a resolved motion state ({ opacity, x, y, scale, rotate, filter, … }) into
+// an inline style object: the transform keys become the individual translate /
+// scale / rotate properties and every other key passes through as its own CSS
+// property. Mirrors the canvas.
+const cssFromState = (state) => {
+  const css = {}
+  writeTransformProps(css, state)
+  Object.keys(state).forEach((key) => {
+    if (TRANSFORM_KEYS.indexOf(key) !== -1) {
+      return
+    }
+    css[key] = state[key]
+  })
+  return css
+}
+
+// How much of the element is inside the viewport right now, as a 0..1 fraction
+// of its own area — the same quantity IntersectionObserver thresholds on, so the
+// failsafe below can apply exactly the threshold useInView was given.
+const visibleFraction = (rect, vh, vw) => {
+  const height = rect.bottom - rect.top
+  const width = rect.right - rect.left
+  if (height <= 0 || width <= 0) {
+    return 0
+  }
+  const visibleHeight = Math.max(0, Math.min(rect.bottom, vh) - Math.max(rect.top, 0))
+  const visibleWidth = Math.max(0, Math.min(rect.right, vw) - Math.max(rect.left, 0))
+  return (visibleHeight * visibleWidth) / (height * width)
+}
+
+// The largest fraction this element could EVER have on screen. An element taller
+// than the viewport can never be 60% visible, so an inViewAmount above that is
+// unsatisfiable and would hold the content at opacity 0 permanently. Clamping to
+// what is physically reachable turns "impossible" into "as visible as it gets".
+const reachableFraction = (rect, vh, vw) => {
+  const height = rect.bottom - rect.top
+  const width = rect.right - rect.left
+  if (height <= 0 || width <= 0) {
+    return 0
+  }
+  return Math.min(1, vh / height) * Math.min(1, vw / width)
+}
+
+// A row that slides by itself is the editor's loop: a clipping frame
+// (data-marquee) holding this Motion track, which holds the row and the hidden
+// copy that closes the loop (data-marquee-copy). For a visitor who asks for
+// less motion the track does not play, so the row stands still and the frame
+// lets the visitor swipe it instead: every item stays reachable. The copy
+// goes, or every item would show twice, and the track stops reserving room
+// for it. Mirrors letMarqueeSwipe in the editor's marquee contract.
+const MARQUEE_FRAME_ATTR = 'data-marquee'
+const MARQUEE_COPY_ATTR = 'data-marquee-copy'
+const letMarqueeSwipe = (track) => {
+  const frame = track && track.parentElement
+  if (!frame || !frame.hasAttribute(MARQUEE_FRAME_ATTR)) {
+    return
+  }
+  frame.style.overflowX = 'auto'
+  track.style.minWidth = '100%'
+  for (const child of Array.from(track.children)) {
+    if (child.hasAttribute(MARQUEE_COPY_ATTR)) {
+      child.style.display = 'none'
+    }
+  }
+}
+
+const buildAnimProps = (trigger, fromVars, toVars, transition, revealed, played) => {
+  switch (trigger) {
+    case 'load':
+      // Driven by "played" (true from the first frame after mount) rather than
+      // framer's initial -> animate pair. A page transition wraps the page in an
+      // AnimatePresence with initial={false}, which hands every motion component
+      // under it its animate state at once and skips the mount animation: an
+      // entrance never played on the first page a visitor opened, and a loop
+      // (repeat -1) never started at all. A change of animate always plays.
+      return { initial: fromVars, animate: played ? toVars : fromVars, transition }
+    case 'in-view':
+      // Driven by "revealed" (useInView OR the timed in-viewport failsafe) rather
+      // than a passive viewport-gated prop, so an already-in-view element (e.g. a
+      // top hero whose observer misses the initial intersection) can never stay hidden.
+      return { initial: fromVars, animate: revealed ? toVars : fromVars, transition }
+    case 'hover':
+      return { whileHover: toVars, transition }
+    case 'tap':
+      return { whileTap: toVars, transition }
+    default:
+      return { initial: fromVars, animate: toVars, transition }
+  }
+}
+
+// Find the elements a stagger should cascade across. Content is usually wrapped as
+// <TqMotion><div class="grid">{items.map(...)}</div></TqMotion>, so the only child
+// is a grid wrapper. Descend through single-child wrappers to the real repeated
+// items, cascade THOSE (so cards cascade — not the lone block), keep the wrappers.
+//
+// Returns null when the descent bottoms out at a single, non-cascadable node — most
+// importantly a runtime <Repeater> (array-mapper), which is self-closing at build
+// time (props.children is undefined) yet renders many siblings at runtime. Wrapping
+// that lone block in a motion.div would drop a single block element BETWEEN a
+// grid/flex container and its repeated items and collapse them into one cell. On null
+// the caller animates the whole subtree as one group instead — the wrapper then sits
+// OUTSIDE the layout container, so the repeated items stay its direct layout children.
+//
+// ⛔ AND A SIBLING BESIDE THE REPEATER DEFEATED THAT GUARD (run 75860d32,
+// "Start by Concern"). The lone-child test only ever fired for a container whose
+// ONLY child is the mapper. That page's grid held the mapper AND one static card:
+//
+//   <div class="collage-grid">            // grid-template-columns: repeat(3, 1fr)
+//     {loading && <div class="loading-state"/>}
+//     {!loading && <Repeater items={concernStarterSets} …/>}   // 4 cards
+//     <div class="collage-item text-pivot"/>
+//   </div>
+//
+// so the array is length 2 at runtime, every branch was wrapped, and the four
+// cards landed INSIDE ONE motion.div — one grid cell holding a vertical stack,
+// the pivot in the next, and the third column empty for the height of the band.
+// The user's read: "4 big cards to the left and only one small card to the
+// right … the right part of the page looks really empty."
+//
+// A repeater among siblings is the SAME defect as a repeater alone, so it takes
+// the same remedy: no stagger, one group animation, layout untouched. Losing a
+// cascade is a smaller loss than losing the layout.
+const mapStaggerTargets = (nodes, wrap, depth) => {
+  // Renders MANY siblings at runtime from ONE build-time element: <Repeater>
+  // (array-mapper) and <DataProvider> (a table-backed mapper's fetch wrapper).
+  // Both keep their content behind a render prop, so props.children is undefined
+  // and the descent below can never reach the items to cascade them.
+  const rendersManySiblings = (node) =>
+    !!node &&
+    React.isValidElement(node) &&
+    !!node.props &&
+    (node.props.renderItem != null || node.props.renderSuccess != null)
+  // The cascade is written onto each target's own `style`, so a target has to be
+  // a plain DOM element: a component owns its rendering and is free to drop an
+  // injected style prop (next/link does exactly that), which would leave the item
+  // stuck at its resting state. One such target disqualifies the whole cascade —
+  // a partial cascade is a page where some cards never appear.
+  const stylableInPlace = (node) =>
+    !!node && React.isValidElement(node) && typeof node.type === 'string'
+  const arr = React.Children.toArray(nodes)
+  if (arr.length > 1 || depth >= 3) {
+    if (arr.some(rendersManySiblings)) {
+      return null
+    }
+    if (!arr.every(stylableInPlace)) {
+      return null
+    }
+    return arr.map((child, index) => wrap(child, index))
+  }
+  const only = arr[0]
+  if (rendersManySiblings(only)) {
+    return null
+  }
+  if (only && React.isValidElement(only) && only.props && only.props.children != null) {
+    const inner = mapStaggerTargets(only.props.children, wrap, depth + 1)
+    if (inner == null) {
+      return null
+    }
+    return React.cloneElement(only, {}, inner)
+  }
+  return null
+}
+
+const TqMotion = ({
+  preset = 'fade-in',
+  trigger = 'in-view',
+  duration = 0.6,
+  delay = 0,
+  easing = 'ease-out',
+  repeat = 0,
+  repeatType = 'loop',
+  inViewOnce = true,
+  inViewAmount = 0.3,
+  stagger = 0,
+  distance = 40,
+  from = null,
+  to = null,
+  scrub = 0,
+  scrollOffset = 'pass',
+  style,
+  children,
+  ...rest
+}) => {
+  const ref = React.useRef(null)
+  const shouldReduceMotion = useReducedMotion()
+  // The server cannot know that the visitor asks for less motion, so it renders
+  // the animated element with its starting style. React keeps that markup for an
+  // element the first render here draws differently, and says nothing in
+  // production: every entrance stayed invisible for those visitors. The still
+  // element is drawn once the page is mounted.
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
+  const still = mounted && Boolean(shouldReduceMotion)
+  // The wrapper is a stacking context at rest, exactly as it is mid-animation
+  // and exactly as the canvas draws it (the canvas wrapper animates via
+  // transform, which creates one). Framer drops the transform once an entrance
+  // ends, so without this a later static sibling — the hero photo — painted
+  // over the headline in the export while the canvas showed it on top.
+  const wrapperStyle = { isolation: 'isolate', ...(style || {}) }
+
+  // in-view reveal is driven by useInView + a STANDING in-viewport failsafe, so
+  // a reveal can never trap content at opacity:0.
+  //
+  // This used to be a single setTimeout that checked once, roughly a second
+  // after mount. That only ever rescued content which happened to be on screen
+  // at that instant: everything below the fold got its one check while
+  // off-screen, saw itself invisible, and was never checked again. From then on
+  // the IntersectionObserver was the only thing that could reveal it, so one
+  // missed callback left an entire section at opacity 0 permanently — a
+  // 2162px-tall product grid sat invisible while dead-centre in the viewport,
+  // 41% on screen, for as long as anyone cared to wait.
+  //
+  // The check now stands for the element's lifetime, coalesced into a frame and
+  // passive so scrolling stays cheap, and it applies the SAME threshold
+  // useInView was given. It therefore fires exactly when the observer should
+  // have and never earlier — an animation's timing is unchanged when the
+  // observer works, which is almost always.
+  const inView = useInView(ref, { once: Boolean(inViewOnce), amount: Number(inViewAmount) || 0.3 })
+  const [forceReveal, setForceReveal] = React.useState(false)
+  const revealed = inView || forceReveal
+  const revealedRef = React.useRef(false)
+  React.useEffect(() => {
+    revealedRef.current = revealed
+  }, [revealed])
+
+  // "The load animation may start now": the resting state is what the first
+  // paint (and the SSR html) carries, and the animation starts on the next
+  // frame. The in-place cascade needs it because a CSS transition only runs
+  // when the value CHANGES; the framer path needs it because a mount animation
+  // is skipped under a page transition (see buildAnimProps).
+  const [played, setPlayed] = React.useState(false)
+  React.useEffect(() => {
+    if (trigger !== 'load') {
+      return undefined
+    }
+    const frame = requestAnimationFrame(() => setPlayed(true))
+    return () => cancelAnimationFrame(frame)
+  }, [trigger])
+
+  React.useEffect(() => {
+    if (trigger !== 'in-view') {
+      return undefined
+    }
+    const once = Boolean(inViewOnce)
+    const amount = Number(inViewAmount) || 0.3
+    let frame = 0
+
+    const check = () => {
+      // Already done: nothing to measure, so a revealed element costs nothing
+      // per scroll frame beyond this comparison.
+      if (once && revealedRef.current) {
+        return
+      }
+      const el = ref.current
+      if (!el || typeof el.getBoundingClientRect !== 'function') {
+        return
+      }
+      const rect = el.getBoundingClientRect()
+      const vh = window.innerHeight || document.documentElement.clientHeight || 0
+      const vw = window.innerWidth || document.documentElement.clientWidth || 0
+      const fraction = visibleFraction(rect, vh, vw)
+      const threshold = Math.min(amount, reachableFraction(rect, vh, vw) * 0.9)
+      const visible = fraction > 0 && fraction >= threshold
+      // With inViewOnce the reveal latches; without it, visibility is tracked
+      // both ways so the author's repeat-on-re-entry behaviour is preserved.
+      setForceReveal(function (previous) {
+        return once ? previous || visible : visible
+      })
+    }
+
+    const schedule = () => {
+      if (frame) {
+        return
+      }
+      frame = requestAnimationFrame(function () {
+        frame = 0
+        check()
+      })
+    }
+
+    const timeoutId = setTimeout(check, (Number(duration) || 0.6) * 1000 + 600)
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule, { passive: true })
+    return () => {
+      clearTimeout(timeoutId)
+      if (frame) {
+        cancelAnimationFrame(frame)
+      }
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+    }
+  }, [trigger, inViewOnce, inViewAmount, duration])
+
+  const dist = Number(distance) || 0
+  const base = presetStates(preset, dist)
+  const fromVars = { ...base.from, ...(from || {}) }
+  const toVars = { ...base.to, ...(to || {}) }
+
+  const ease = EASINGS[easing] || EASINGS['ease-out']
+  const repeatCount = Number(repeat) < 0 ? Infinity : Number(repeat) || 0
+  const transition = {
+    duration: Number(duration) || 0.6,
+    delay: Number(delay) || 0,
+    ease,
+    repeat: repeatCount,
+    repeatType,
+  }
+
+  // Scroll-linked motion is one trigger out of five, but the hooks have to run
+  // on every render. Passing a target when we are not going to use it makes
+  // framer measure this element against the scroll container on every scroll
+  // frame — and warn about the container being position:static — once per
+  // motion node on the page. Targetless useScroll shares one window listener
+  // and measures nothing.
+  const scrollOptions =
+    trigger === 'scroll'
+      ? { target: ref, offset: SCROLL_OFFSET_RANGES[scrollOffset] || SCROLL_OFFSET_RANGES.pass }
+      : {}
+  const { scrollYProgress } = useScroll(scrollOptions)
+  const scrubSeconds = Number(scrub) || 0
+  const smoothedProgress = useSpring(scrollYProgress, {
+    duration: Math.max(1, scrubSeconds * 1000),
+    bounce: 0,
+  })
+  const scrollProgress = scrubSeconds > 0 ? smoothedProgress : scrollYProgress
+  // Progress writes styles straight to the DOM node (no re-render per frame),
+  // interpolating the FULL from/to state — not just y — exactly like the
+  // canvas runtime does.
+  useMotionValueEvent(scrollProgress, 'change', (p) => {
+    if (trigger === 'scroll' && !shouldReduceMotion) {
+      applyScrollState(ref.current, fromVars, toVars, p)
+    }
+  })
+  React.useEffect(() => {
+    if (trigger === 'scroll' && !shouldReduceMotion) {
+      applyScrollState(ref.current, fromVars, toVars, scrollProgress.get())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trigger, shouldReduceMotion])
+
+  // A row that slides by itself stands still for a visitor who asks for less
+  // motion, and its frame lets them swipe it (letMarqueeSwipe).
+  React.useEffect(() => {
+    if (still) {
+      letMarqueeSwipe(ref.current)
+    }
+  }, [still])
+
+  if (still) {
+    return (
+      <div ref={ref} style={wrapperStyle} {...rest}>
+        {children}
+      </div>
+    )
+  }
+
+  if (trigger === 'scroll') {
+    return (
+      <div ref={ref} style={wrapperStyle} {...rest}>
+        {children}
+      </div>
+    )
+  }
+
+  // A CSS transition plays exactly once, so a repeating stagger keeps the framer
+  // path (and its wrapper). Entrance cascades — every stagger the generator has
+  // ever emitted — run in place.
+  if (Number(stagger) > 0 && repeatCount === 0 && (trigger === 'load' || trigger === 'in-view')) {
+    const fromCss = cssFromState(fromVars)
+    const toCss = cssFromState(toVars)
+    // Transition every property either state touches, so a preset that animates
+    // only `filter` (blur-in) is covered exactly like one that animates opacity.
+    const animatedProps = Object.keys(fromCss).concat(
+      Object.keys(toCss).filter((prop) => fromCss[prop] === undefined)
+    )
+    const easeCss = 'cubic-bezier(' + ease.join(', ') + ')'
+    const durationSeconds = Number(duration) || 0.6
+    const atRest = trigger === 'load' ? played : revealed
+
+    const styleChild = (child, index) => {
+      const delaySeconds = (Number(delay) || 0) + index * Number(stagger)
+      const childTransition = animatedProps
+        .map(
+          (prop) =>
+            prop + ' ' + durationSeconds + 's ' + easeCss + ' ' + delaySeconds + 's'
+        )
+        .join(', ')
+      return React.cloneElement(child, {
+        key: index,
+        style: {
+          ...(child.props.style || {}),
+          ...(atRest ? toCss : fromCss),
+          transition: childTransition,
+        },
+      })
+    }
+    const staggerTargets = mapStaggerTargets(children, styleChild, 0)
+    // staggerTargets is null when there are no real per-item targets to cascade
+    // (e.g. the items render from a runtime <Repeater>, or a target is a component
+    // that may drop an injected style). Fall through to the single group animation
+    // below so the wrapper stays OUTSIDE the grid/flex container and its repeated
+    // items remain direct layout children (no collapsed layout).
+    if (staggerTargets != null) {
+      // motion.div (animation-less), NOT a plain div: this branch and the group
+      // fall-through below must render the SAME outer element type. A page whose
+      // loading conditional resolves can flip which branch runs — with differing
+      // types React REMOUNTS the outer element, and framer's useInView keeps
+      // observing the detached original, so the group variant below could never
+      // reveal (the trapped-at-opacity-0 "Making Process" defect). A constant
+      // element type keeps the same DOM node across the swap and the observer live.
+      return (
+        <motion.div ref={ref} style={wrapperStyle} {...rest}>
+          {staggerTargets}
+        </motion.div>
+      )
+    }
+  }
+
+  const animProps = buildAnimProps(trigger, fromVars, toVars, transition, revealed, played)
+
+  return (
+    <motion.div ref={ref} style={wrapperStyle} {...animProps} {...rest}>
+      {children}
+    </motion.div>
+  )
+}
+
+export default TqMotion
