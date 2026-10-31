@@ -103,10 +103,10 @@ const Contact = (props) => {
                 <div className="contact-editorial-eyebrow-wrap">
                   <span className="contact-editorial-label">Inquiries</span>
                 </div>
-                <h1 className="hero-title contact-editorial-heading">
+                <h1 className="contact-editorial-heading hero-title">
                   Contact Us
                 </h1>
-                <p className="section-content contact-editorial-intro">
+                <p className="contact-editorial-intro section-content">
                   {' '}
                   We welcome direct engagement from lead investors, prospective
                   co-investors, operating executives, and owners or founders of
@@ -122,7 +122,7 @@ const Contact = (props) => {
                     id="openContactModalBtn"
                     type="button"
                     data-contact-trigger="true"
-                    className="btn-primary btn contact-editorial-button"
+                    className="contact-editorial-button btn-primary btn"
                   >
                     <span>
                       {' '}
@@ -134,10 +134,10 @@ const Contact = (props) => {
                       />
                     </span>
                     <svg
+                      fill="none"
                       width="18"
                       height="18"
                       viewBox="0 0 18 18"
-                      fill="none"
                       aria-hidden="true"
                     >
                       <path
