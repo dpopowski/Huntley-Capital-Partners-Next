@@ -42,14 +42,6 @@ const Strategy = (props) => {
             name="twitter:image"
             content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ed99ebef-6fef-4947-b59e-b90befa630a9/73bee5e8-db2b-41d8-96a4-db47776b37c2?org_if_sml=1&amp;force_format=original"
           />
-          <link
-            rel="canonical"
-            href="https://well-to-do-potable-mole-yvavdo.teleporthq.site/strategy"
-          />
-          <meta
-            property="og:url"
-            content="https://well-to-do-potable-mole-yvavdo.teleporthq.site/strategy"
-          />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -554,7 +546,6 @@ const Strategy = (props) => {
                   decoding="async"
                   alt="Wide mountain landscape reflected in a calm lake"
                   src="https://images.pexels.com/photos/8065813/pexels-photo-8065813.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=500"
-                  fetchpriority="high"
                   className="strategy-thq-huntley-contact-landscape-photo-elm huntley-contact-landscape-photo"
                 />
               </div>

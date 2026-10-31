@@ -1977,14 +1977,6 @@
  
 
  
-
- 
-
- 
-
- 
-
- 
 .home-criteria-link-row {
   gap: 12px;
   width: 100%;
@@ -3509,32 +3501,6 @@
  
 
  
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
 .huntley-contact-label-open:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
@@ -4590,83 +4556,6 @@
   .huntley-contact-band-heading {
     font-size: 28px;
     line-height: 1.2;
-  }
-  .terms-mobile-type {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  .terms-mobile-type h1 {
-    font-size: 32px;
-    line-height: 1.15;
-  }
-  .terms-mobile-type h2 {
-    font-size: 26px;
-    line-height: 1.2;
-  }
-  .terms-mobile-type p {
-    font-size: 16px;
-    line-height: 1.55;
-  }
-  .terms-mobile-type * {
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    overflow-wrap: anywhere;
-  }
-  .terms-mobile-type .section-content {
-    font-size: 16px;
-    line-height: 1.55;
-  }
-  .terms-mobile-type .hero-title {
-    font-size: 32px;
-    line-height: 1.15;
-  }
-  .terms-mobile-type .section-title {
-    font-size: 26px;
-    line-height: 1.2;
-  }
-  .terms-mobile-type section {
-    width: 100%;
-    padding: 48px 24px;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  .terms-mobile-type.terms-mobile-type {
-    width: 100%;
-    padding: 48px 24px;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    overflow-wrap: anywhere;
-  }
-  .terms-mobile-type.terms-mobile-type > * {
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-  .terms-mobile-type.terms-mobile-type h1 {
-    font-size: 32px;
-    line-height: 1.15;
-  }
-  .terms-mobile-type.terms-mobile-type h2 {
-    font-size: 26px;
-    line-height: 1.2;
-  }
-  .terms-mobile-type.terms-mobile-type p {
-    font-size: 16px;
-    line-height: 1.55;
-  }
-  .terms-mobile-type.terms-mobile-type > p:first-of-type {
-    font-size: 12px;
-  }
-  .terms-mobile-type.terms-mobile-type strong {
-    font-size: 15px;
-  }
-  .terms-mobile-type.terms-mobile-type b {
-    font-size: 15px;
   }
   .home-criteria-link-row {
     gap: 12px;
