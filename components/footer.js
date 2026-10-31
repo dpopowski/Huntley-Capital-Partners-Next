@@ -60,7 +60,7 @@ const Footer = (props) => {
                 <h4
                   id="huntley-contact-label-open"
                   role="button"
-                  aria-controls="huntley-contact-modal"
+                  aria-controls="huntley-contact-panel"
                   tabIndex="0"
                   className="huntley-footer-label huntley-contact-label-open"
                 >
@@ -69,6 +69,7 @@ const Footer = (props) => {
                 <button
                   id="huntley-contact-open"
                   type="button"
+                  aria-controls="huntley-contact-panel"
                   className="huntley-footer-contact-trigger"
                 >
                   {' '}
@@ -87,203 +88,6 @@ const Footer = (props) => {
                 <p className="huntley-footer-copyright">
                   © 2026 Huntley Capital Partners
                 </p>
-              </div>
-            </div>
-          </div>
-          <div
-            id="huntley-contact-modal"
-            aria-hidden="true"
-            className="huntley-modal-overlay"
-          >
-            <div
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-title"
-              className="huntley-modal-panel"
-            >
-              <button
-                id="huntley-contact-close"
-                type="button"
-                aria-label="Close panel"
-                className="huntley-modal-close"
-              >
-                <svg
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M18 6L6 18M6 6l12 12"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-              </button>
-              <div className="huntley-modal-header">
-                <h2 id="modal-title" className="huntley-modal-title">
-                  Contact Partners
-                </h2>
-                <p className="huntley-modal-subtitle">
-                  Direct institutional engagement for power infrastructure
-                  investment.
-                </p>
-              </div>
-              <div id="huntley-contact-gate" className="huntley-modal-gate">
-                <button
-                  id="huntley-reveal-trigger"
-                  type="button"
-                  className="huntley-modal-reveal-btn"
-                >
-                  <div className="footer-thq-flex-row-elm flex-row">
-                    <svg
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="20"
-                      viewBox="0 0 24 24"
-                    >
-                      <g
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="m16 11l2 2l4-4m-6 12v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                        <circle r="4" cx="9" cy="7"></circle>
-                      </g>
-                    </svg>
-                    <span>Show contact information</span>
-                  </div>
-                </button>
-              </div>
-              <div
-                id="huntley-contact-details"
-                className="footer-thq-huntley-modal-details-elm huntley-modal-details"
-              >
-                <div className="huntley-partner-card">
-                  <h3 className="huntley-partner-name">Ted Demiris</h3>
-                  <p className="huntley-partner-title">Co-Founder</p>
-                  <div className="huntley-partner-links">
-                    <a
-                      href="#"
-                      id="link-ted-email"
-                      data-thq-link-box="true"
-                      className="huntley-partner-link"
-                    >
-                      <svg
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="16"
-                        viewBox="0 0 24 24"
-                      >
-                        <g
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
-                          <rect
-                            x="2"
-                            y="4"
-                            rx="2"
-                            width="20"
-                            height="16"
-                          ></rect>
-                        </g>
-                      </svg>
-                      <span>Email</span>
-                    </a>
-                    <a
-                      href="#"
-                      id="link-ted-phone"
-                      data-thq-link-box="true"
-                      className="huntley-partner-link"
-                    >
-                      <svg
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="16"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></path>
-                      </svg>
-                      <span>Call</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="huntley-partner-card huntley-partner-card-pos-last">
-                  <h3 className="huntley-partner-name">Daniel Popowski</h3>
-                  <p className="huntley-partner-title">Co-Founder</p>
-                  <div className="huntley-partner-links">
-                    <a
-                      href="#"
-                      id="link-dan-email"
-                      data-thq-link-box="true"
-                      className="huntley-partner-link"
-                    >
-                      <svg
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="16"
-                        viewBox="0 0 24 24"
-                      >
-                        <g
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
-                          <rect
-                            x="2"
-                            y="4"
-                            rx="2"
-                            width="20"
-                            height="16"
-                          ></rect>
-                        </g>
-                      </svg>
-                      <span>Email</span>
-                    </a>
-                    <a
-                      href="#"
-                      id="link-dan-phone"
-                      data-thq-link-box="true"
-                      className="huntley-partner-link"
-                    >
-                      <svg
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="16"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></path>
-                      </svg>
-                      <span>Call</span>
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -498,15 +302,6 @@ body, body * { font-family: Manrope, sans-serif !important; }
             font-size: var(--font-size-xs);
             font-family: Manrope;
             font-weight: var(--font-weight-body);
-          }
-          .footer-thq-flex-row-elm {
-            gap: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-          .footer-thq-huntley-modal-details-elm {
-            display: none;
           }
           .footer-container2 {
             display: none;

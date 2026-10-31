@@ -5,6 +5,7 @@ import Script from 'dangerous-html/react'
 
 import Navigation from '../components/navigation'
 import TqMotion from '../components/tq-motion'
+import CustomComponent from '../components/custom-component'
 import Footer from '../components/footer'
 
 const Team = (props) => {
@@ -200,8 +201,9 @@ const Team = (props) => {
                       <button
                         id="btn-contact-2"
                         type="button"
-                        aria-controls="huntley-contact-modal"
+                        aria-controls="huntley-contact-panel"
                         aria-haspopup="dialog"
+                        data-contact-trigger="true"
                         className="open-contact-trigger huntley-profile-action-btn"
                       >
                         <span className="huntley-action-label">Contact</span>
@@ -308,8 +310,9 @@ const Team = (props) => {
                       <button
                         id="btn-contact"
                         type="button"
-                        aria-controls="huntley-contact-modal"
+                        aria-controls="huntley-contact-panel"
                         aria-haspopup="dialog"
+                        data-contact-trigger="true"
                         className="open-contact-trigger huntley-profile-action-btn"
                       >
                         <span className="huntley-action-label">Contact</span>
@@ -350,199 +353,8 @@ const Team = (props) => {
             </TqMotion>
           </div>
         </section>
-        <div
-          id="huntley-contact-panel"
-          role="dialog"
-          hidden
-          aria-modal="true"
-          aria-labelledby="huntley-modal-title"
-          className="huntley-contact-modal team-huntley-contact-modal"
-        >
-          <div
-            id="huntley-contact-backdrop"
-            className="huntley-contact-backdrop team-huntley-contact-backdrop"
-          ></div>
-          <div className="team-huntley-contact-dialog huntley-contact-dialog">
-            <div className="team-huntley-contact-header huntley-contact-header">
-              <div className="huntley-contact-title-group">
-                <span className="team-huntley-contact-firm-label huntley-contact-firm-label">
-                  Huntley Capital Partners
-                </span>
-                <h3
-                  id="huntley-modal-title"
-                  className="team-huntley-contact-dialog-title huntley-contact-dialog-title"
-                >
-                  Contact
-                </h3>
-              </div>
-              <button
-                id="huntley-close-contact-btn"
-                type="button"
-                aria-label="Close contact panel"
-                className="team-huntley-modal-close-btn huntley-modal-close-btn"
-              >
-                <svg
-                  fill="none"
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="20"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
-              </button>
-            </div>
-            <div className="huntley-contact-body">
-              <div
-                id="huntley-reveal-gate"
-                className="team-huntley-reveal-prompt-state huntley-reveal-prompt-state"
-              >
-                <p className="huntley-contact-prompt-copy team-huntley-contact-prompt-copy">
-                  To view direct partner telephone and electronic mail lines,
-                  please confirm below.
-                </p>
-                <button
-                  id="huntley-trigger-reveal-btn"
-                  type="button"
-                  className="team-huntley-reveal-btn huntley-reveal-btn btn-primary team-btn btn"
-                >
-                  <span>Show contact information</span>
-                </button>
-              </div>
-              <div
-                id="huntley-revealed-box"
-                hidden
-                className="huntley-revealed-contact-state team-huntley-revealed-contact-state"
-              >
-                <div
-                  id="partner-ted-container"
-                  className="team-huntley-partner-contact-row huntley-partner-contact-row"
-                ></div>
-                <div className="huntley-partner-divider"></div>
-                <div
-                  id="partner-dan-container"
-                  className="team-huntley-partner-contact-row huntley-partner-contact-row"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="team-container2">
           <div className="team-container3">
-            <Script
-              html={`<script defer data-name="huntley-team-contact-controller">
-(function(){
-(function() {
-  const panel = document.getElementById('huntley-contact-panel');
-  const backdrop = document.getElementById('huntley-contact-backdrop');
-  const closeBtn = document.getElementById('huntley-close-contact-btn');
-  const triggerBtns = document.querySelectorAll('.open-contact-trigger');
-  const revealTrigger = document.getElementById('huntley-trigger-reveal-btn');
-  const revealGate = document.getElementById('huntley-reveal-gate');
-  const revealedBox = document.getElementById('huntley-revealed-box');
-  const tedContainer = document.getElementById('partner-ted-container');
-  const danContainer = document.getElementById('partner-dan-container');
-
-  function openPanel() {
-    if (!panel) return;
-    panel.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePanel() {
-    if (!panel) return;
-    panel.setAttribute('hidden', '');
-    document.body.style.overflow = '';
-  }
-
-  if (triggerBtns && triggerBtns.length > 0) {
-    triggerBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const footerOpenBtn = document.getElementById('huntley-contact-open');
-        if (footerOpenBtn) footerOpenBtn.click();
-      });
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closePanel);
-  }
-
-  if (backdrop) {
-    backdrop.addEventListener('click', closePanel);
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && panel && !panel.hasAttribute('hidden')) {
-      closePanel();
-    }
-  });
-
-  if (revealTrigger) {
-    revealTrigger.addEventListener('click', function() {
-      if (revealGate) revealGate.setAttribute('hidden', '');
-      if (revealedBox) revealedBox.removeAttribute('hidden');
-
-      const domain = 'huntleycp.com';
-      const u1 = 'tdemiris';
-      const u2 = 'dpopowski';
-      const e1 = u1 + '@' + domain;
-      const e2 = u2 + '@' + domain;
-      const p1 = '(317) 442-3033';
-      const p1Raw = '+13174423033';
-      const p2 = '(410) 599-4177';
-      const p2Raw = '+14105994177';
-
-      if (tedContainer && tedContainer.children.length === 0) {
-        tedContainer.innerHTML =
-          '<div class="huntley-partner-meta">' +
-            '<h4 class="huntley-partner-name">Ted Demiris</h4>' +
-            '<p class="huntley-partner-role">Co-Founder</p>' +
-          '</div>' +
-          '<div class="huntley-partner-channels">' +
-            '<a class="huntley-channel-link" href="mailto:' + e1 + '">' +
-              '<span class="huntley-channel-label">EMAIL</span>' +
-              '<span class="huntley-channel-val">' + e1 + '</span>' +
-            '</a>' +
-            '<a class="huntley-channel-link" href="tel:' + p1Raw + '">' +
-              '<span class="huntley-channel-label">PHONE</span>' +
-              '<span class="huntley-channel-val">' + p1 + '</span>' +
-            '</a>' +
-          '</div>';
-      }
-
-      if (danContainer && danContainer.children.length === 0) {
-        danContainer.innerHTML =
-          '<div class="huntley-partner-meta">' +
-            '<h4 class="huntley-partner-name">Daniel Popowski</h4>' +
-            '<p class="huntley-partner-role">Co-Founder</p>' +
-          '</div>' +
-          '<div class="huntley-partner-channels">' +
-            '<a class="huntley-channel-link" href="mailto:' + e2 + '">' +
-              '<span class="huntley-channel-label">EMAIL</span>' +
-              '<span class="huntley-channel-val">' + e2 + '</span>' +
-            '</a>' +
-            '<a class="huntley-channel-link" href="tel:' + p2Raw + '">' +
-              '<span class="huntley-channel-label">PHONE</span>' +
-              '<span class="huntley-channel-val">' + p2 + '</span>' +
-            '</a>' +
-          '</div>';
-      }
-    });
-  }
-})();
-})();
-</script>`}
-            ></Script>
-          </div>
-        </div>
-        <div className="team-container4">
-          <div className="team-container5">
             <Script
               html={`<style>
 :where(img, picture, video, canvas) {
@@ -556,6 +368,7 @@ const Team = (props) => {
             ></Script>
           </div>
         </div>
+        <CustomComponent></CustomComponent>
         <Footer></Footer>
       </div>
       <style jsx>
@@ -608,12 +421,6 @@ const Team = (props) => {
             display: none;
           }
           .team-container3 {
-            display: contents;
-          }
-          .team-container4 {
-            display: none;
-          }
-          .team-container5 {
             display: contents;
           }
           @media (max-width: 1600px) {

@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Script from 'dangerous-html/react'
 
 import Navigation from '../components/navigation'
+import CustomComponent from '../components/custom-component'
 import Footer from '../components/footer'
 
 const Contact = (props) => {
@@ -120,6 +121,7 @@ const Contact = (props) => {
                   <button
                     id="openContactModalBtn"
                     type="button"
+                    data-contact-trigger="true"
                     className="btn-primary btn contact-editorial-button"
                   >
                     <span>
@@ -157,208 +159,9 @@ const Contact = (props) => {
               </div>
             </div>
           </div>
-          <dialog id="huntleyContactDialog" className="contact-dialog-modal">
-            <div className="contact-dialog-header">
-              <div className="huntley-contact-title-group">
-                <span className="contact-dialog-pretitle">
-                  Huntley Capital Partners
-                </span>
-                <h2 className="contact-huntley-contact-dialog-title huntley-contact-dialog-title">
-                  Partner Contact Directory
-                </h2>
-              </div>
-              <button
-                id="closeContactModalBtn"
-                type="button"
-                aria-label="Close dialog"
-                className="contact-dialog-close-btn"
-              >
-                <svg
-                  fill="none"
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="20"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
-              </button>
-            </div>
-            <div className="contact-dialog-body">
-              <div id="contactInitialPrompt" className="contact-dialog-prompt">
-                <p className="contact-dialog-explainer section-content">
-                  {' '}
-                  Direct telephone numbers and email addresses for Huntley
-                  Capital Partners’ General Partners are provided below for
-                  institutional counterparts, prospective portfolio executives,
-                  and co-investment participants.
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: ' ',
-                    }}
-                  />
-                </p>
-                <button
-                  id="revealPartnersBtn"
-                  type="button"
-                  className="contact-dialog-reveal-btn contact-btn btn-primary btn"
-                >
-                  {' '}
-                  Show contact information
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: ' ',
-                    }}
-                  />
-                </button>
-              </div>
-              <div
-                id="contactRevealedArea"
-                hidden
-                className="contact-dialog-revealed"
-              >
-                <div
-                  id="partnersContainer"
-                  className="contact-partners-grid"
-                ></div>
-              </div>
-            </div>
-          </dialog>
         </section>
         <div className="contact-container2">
           <div className="contact-container3">
-            <Script
-              html={`<script defer data-name="huntley-contact-reveal">
-(function(){
-  const modal = document.getElementById('huntleyContactDialog');
-  const openHeroBtn = document.getElementById('openContactModalBtn');
-  const closeBtn = document.getElementById('closeContactModalBtn');
-  const revealBtn = document.getElementById('revealPartnersBtn');
-  const promptBox = document.getElementById('contactInitialPrompt');
-  const revealedArea = document.getElementById('contactRevealedArea');
-  const partnersContainer = document.getElementById('partnersContainer');
-  const officeBtns = document.querySelectorAll('.office-card-btn');
-
-  function openModal() {
-    if (modal && typeof modal.showModal === 'function') {
-      modal.showModal();
-    }
-  }
-
-  function closeModal() {
-    if (modal && typeof modal.close === 'function') {
-      modal.close();
-    }
-  }
-
-  if (openHeroBtn) {
-    openHeroBtn.addEventListener('click', openModal);
-  }
-
-  if (officeBtns) {
-    officeBtns.forEach(function(btn) {
-      btn.addEventListener('click', openModal);
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  if (modal) {
-    modal.addEventListener('click', function(e) {
-      const rect = modal.getBoundingClientRect();
-      const isInDialog = (
-        rect.top <= e.clientY &&
-        e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX &&
-        e.clientX <= rect.left + rect.width
-      );
-      if (!isInDialog) {
-        closeModal();
-      }
-    });
-  }
-
-  let contactRevealed = false;
-
-  if (revealBtn) {
-    revealBtn.addEventListener('click', function() {
-      if (contactRevealed) return;
-      contactRevealed = true;
-
-      const d = 'huntleycp.com';
-      const p1User = 'tdemiris';
-      const p1Phone = '(317) ' + '442-' + '3033';
-      const p1Tel = '+13174423033';
-      const p1Email = p1User + '@' + d;
-
-      const p2User = 'dpopowski';
-      const p2Phone = '(410) ' + '599-' + '4177';
-      const p2Tel = '+14105994177';
-      const p2Email = p2User + '@' + d;
-
-      const p1Card = document.createElement('div');
-      p1Card.className = 'contact-partner-card';
-      p1Card.innerHTML = \`
-        <div class="contact-partner-role-badge">Co-Founder</div>
-        <h3 class="team-reference-title contact-partner-name">Ted Demiris</h3>
-        <p class="section-content contact-partner-bio-note">Nuclear engineering credibility, institutional investment experience, firm generation, and grid reliability.</p>
-        <div class="contact-reveal-fields">
-          <div class="contact-reveal-field">
-            <span class="contact-reveal-label">EMAIL</span>
-            <a class="contact-reveal-value" href="mailto:\${p1Email}">\${p1Email}</a>
-          </div>
-          <div class="contact-reveal-field">
-            <span class="contact-reveal-label">PHONE</span>
-            <a class="contact-reveal-value" href="tel:\${p1Tel}">\${p1Phone}</a>
-          </div>
-        </div>
-      \`;
-
-      const p2Card = document.createElement('div');
-      p2Card.className = 'contact-partner-card';
-      p2Card.innerHTML = \`
-        <div class="contact-partner-role-badge">Co-Founder</div>
-        <h3 class="team-reference-title contact-partner-name">Daniel Popowski</h3>
-        <p class="section-content contact-partner-bio-note">Underwriting, market-analysis, and execution perspective across capital-intensive infrastructure and development.</p>
-        <div class="contact-reveal-fields">
-          <div class="contact-reveal-field">
-            <span class="contact-reveal-label">EMAIL</span>
-            <a class="contact-reveal-value" href="mailto:\${p2Email}">\${p2Email}</a>
-          </div>
-          <div class="contact-reveal-field">
-            <span class="contact-reveal-label">PHONE</span>
-            <a class="contact-reveal-value" href="tel:\${p2Tel}">\${p2Phone}</a>
-          </div>
-        </div>
-      \`;
-
-      if (partnersContainer) {
-        partnersContainer.appendChild(p1Card);
-        partnersContainer.appendChild(p2Card);
-      }
-
-      if (promptBox) {
-        promptBox.style.display = 'none';
-      }
-
-      if (revealedArea) {
-        revealedArea.hidden = false;
-      }
-    });
-  }
-})()
-</script>`}
-            ></Script>
-          </div>
-        </div>
-        <div className="contact-container4">
-          <div className="contact-container5">
             <Script
               html={`<style>
 :where(img, picture, video, canvas) {
@@ -378,6 +181,7 @@ const Contact = (props) => {
             ></Script>
           </div>
         </div>
+        <CustomComponent></CustomComponent>
         <Footer></Footer>
       </div>
       <style jsx>
@@ -397,12 +201,6 @@ const Contact = (props) => {
             display: none;
           }
           .contact-container3 {
-            display: contents;
-          }
-          .contact-container4 {
-            display: none;
-          }
-          .contact-container5 {
             display: contents;
           }
         `}

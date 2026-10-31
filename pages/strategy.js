@@ -4,12 +4,13 @@ import Head from 'next/head'
 import Script from 'dangerous-html/react'
 
 import Navigation from '../components/navigation'
+import CustomComponent from '../components/custom-component'
 import Footer from '../components/footer'
 
 const Strategy = (props) => {
   return (
     <>
-      <div className="strategy-container10 strategy-tablet-scope">
+      <div className="strategy-container1 strategy-tablet-scope">
         <Head>
           <title>Investment Strategy | Huntley Capital Partners</title>
           <meta
@@ -560,196 +561,8 @@ const Strategy = (props) => {
             </div>
           </div>
         </section>
-        <div
-          id="huntley-contact-panel"
-          role="dialog"
-          hidden
-          aria-modal="true"
-          aria-labelledby="huntley-modal-title"
-          className="huntley-contact-modal"
-        >
-          <div
-            id="huntley-contact-backdrop"
-            className="huntley-contact-backdrop"
-          ></div>
-          <div className="huntley-contact-dialog">
-            <div className="huntley-contact-header">
-              <div className="huntley-contact-title-group">
-                <span className="strategy-redesign-huntley-contact-firm-label huntley-contact-firm-label">
-                  Huntley Capital Partners
-                </span>
-                <h3
-                  id="huntley-modal-title"
-                  className="strategy-redesign-huntley-contact-dialog-title huntley-contact-dialog-title"
-                >
-                  Contact
-                </h3>
-              </div>
-              <button
-                id="huntley-close-contact-btn"
-                type="button"
-                aria-label="Close contact panel"
-                className="strategy-redesign-huntley-modal-close-btn huntley-modal-close-btn"
-              >
-                <svg
-                  fill="none"
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="20"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
-              </button>
-            </div>
-            <div className="huntley-contact-body">
-              <div
-                id="huntley-reveal-gate"
-                className="huntley-reveal-prompt-state"
-              >
-                <p className="huntley-contact-prompt-copy strategy-redesign-huntley-contact-prompt-copy">
-                  To view direct partner telephone and electronic mail lines,
-                  please confirm below.
-                </p>
-                <button
-                  id="huntley-trigger-reveal-btn"
-                  type="button"
-                  className="huntley-reveal-btn btn-primary strategy-addition-cta btn strategy-redesign-huntley-reveal-btn strategy-redesign-btn"
-                >
-                  <span>Show contact information</span>
-                </button>
-              </div>
-              <div
-                id="huntley-revealed-box"
-                hidden
-                className="huntley-revealed-contact-state"
-              >
-                <div
-                  id="partner-ted-container"
-                  className="huntley-partner-contact-row"
-                ></div>
-                <div className="huntley-partner-divider"></div>
-                <div
-                  id="partner-dan-container"
-                  className="huntley-partner-contact-row"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="strategy-container11">
-          <div className="strategy-container12">
-            <Script
-              html={`<script defer data-name="huntley-strategy-controller">
-(function(){
-(function() {
-  const panel = document.getElementById('huntley-contact-panel');
-  const backdrop = document.getElementById('huntley-contact-backdrop');
-  const closeBtn = document.getElementById('huntley-close-contact-btn');
-  const revealTrigger = document.getElementById('huntley-trigger-reveal-btn');
-  const revealGate = document.getElementById('huntley-reveal-gate');
-  const revealedBox = document.getElementById('huntley-revealed-box');
-  const tedContainer = document.getElementById('partner-ted-container');
-  const danContainer = document.getElementById('partner-dan-container');
-
-  function openPanel() {
-    if (!panel) return;
-    panel.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePanel() {
-    if (!panel) return;
-    panel.setAttribute('hidden', '');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('a[href="#contact"], button[data-contact-trigger], .huntley-contact-trigger').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      openPanel();
-    });
-  });
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closePanel);
-  }
-
-  if (backdrop) {
-    backdrop.addEventListener('click', closePanel);
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && panel && !panel.hasAttribute('hidden')) {
-      closePanel();
-    }
-  });
-
-  if (revealTrigger) {
-    revealTrigger.addEventListener('click', function() {
-      if (revealGate) revealGate.setAttribute('hidden', '');
-      if (revealedBox) revealedBox.removeAttribute('hidden');
-
-      const domain = 'huntleycp.com';
-      const u1 = 'tdemiris';
-      const u2 = 'dpopowski';
-      const e1 = u1 + '@' + domain;
-      const e2 = u2 + '@' + domain;
-      const p1 = '(317) 442-3033';
-      const p1Raw = '+13174423033';
-      const p2 = '(410) 599-4177';
-      const p2Raw = '+14105994177';
-
-      if (tedContainer && tedContainer.children.length === 0) {
-        tedContainer.innerHTML =
-          '<div class="huntley-partner-meta">' +
-            '<h4 class="huntley-partner-name">Ted Demiris</h4>' +
-            '<p class="huntley-partner-role">Co-Founder</p>' +
-          '</div>' +
-          '<div class="huntley-partner-channels">' +
-            '<a class="huntley-channel-link" href="mailto:' + e1 + '">' +
-              '<span class="huntley-channel-label">EMAIL</span>' +
-              '<span class="huntley-channel-val">' + e1 + '</span>' +
-            '</a>' +
-            '<a class="huntley-channel-link" href="tel:' + p1Raw + '">' +
-              '<span class="huntley-channel-label">PHONE</span>' +
-              '<span class="huntley-channel-val">' + p1 + '</span>' +
-            '</a>' +
-          '</div>';
-      }
-
-      if (danContainer && danContainer.children.length === 0) {
-        danContainer.innerHTML =
-          '<div class="huntley-partner-meta">' +
-            '<h4 class="huntley-partner-name">Daniel Popowski</h4>' +
-            '<p class="huntley-partner-role">Co-Founder</p>' +
-          '</div>' +
-          '<div class="huntley-partner-channels">' +
-            '<a class="huntley-channel-link" href="mailto:' + e2 + '">' +
-              '<span class="huntley-channel-label">EMAIL</span>' +
-              '<span class="huntley-channel-val">' + e2 + '</span>' +
-            '</a>' +
-            '<a class="huntley-channel-link" href="tel:' + p2Raw + '">' +
-              '<span class="huntley-channel-label">PHONE</span>' +
-              '<span class="huntley-channel-val">' + p2 + '</span>' +
-            '</a>' +
-          '</div>';
-      }
-    });
-  }
-})();
-})();
-</script>`}
-            ></Script>
-          </div>
-        </div>
-        <div className="strategy-container13">
-          <div className="strategy-container14">
+        <div className="strategy-container2">
+          <div className="strategy-container3">
             <Script
               html={`<style>
 :where(h1, h2, h3, h4, h5, h6) {
@@ -760,7 +573,7 @@ const Strategy = (props) => {
           </div>
         </div>
         <div>
-          <div className="strategy-container16">
+          <div className="strategy-container5">
             <Script
               html={`<style>
 :where(h1, h2, h3, h4, h5, h6) {
@@ -1099,7 +912,7 @@ const Strategy = (props) => {
           </div>
         </div>
         <div>
-          <div className="strategy-container18">
+          <div className="strategy-container7">
             <Script
               html={`<style>
 @media (max-width: 767px) {
@@ -1118,8 +931,8 @@ section.huntley-strategy-segments {
             ></Script>
           </div>
         </div>
-        <div className="strategy-container19">
-          <div className="strategy-container20">
+        <div className="strategy-container8">
+          <div className="strategy-container9">
             <Script
               html={`<script>
 (function(){
@@ -1160,11 +973,12 @@ if (document.head) document.head.appendChild(style)
             ></Script>
           </div>
         </div>
+        <CustomComponent></CustomComponent>
         <Footer></Footer>
       </div>
       <style jsx>
         {`
-          .strategy-container10 {
+          .strategy-container1 {
             width: 100%;
             min-height: 100vh;
           }
@@ -1645,28 +1459,22 @@ if (document.head) document.head.appendChild(style)
             aspect-ratio: 1 / 1;
             object-position: center;
           }
-          .strategy-container11 {
+          .strategy-container2 {
             display: none;
           }
-          .strategy-container12 {
+          .strategy-container3 {
             display: contents;
           }
-          .strategy-container13 {
+          .strategy-container5 {
+            display: contents;
+          }
+          .strategy-container7 {
+            display: contents;
+          }
+          .strategy-container8 {
             display: none;
           }
-          .strategy-container14 {
-            display: contents;
-          }
-          .strategy-container16 {
-            display: contents;
-          }
-          .strategy-container18 {
-            display: contents;
-          }
-          .strategy-container19 {
-            display: none;
-          }
-          .strategy-container20 {
+          .strategy-container9 {
             display: contents;
           }
           @media (max-width: 1600px) {

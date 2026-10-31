@@ -6,6 +6,7 @@ import Script from 'dangerous-html/react'
 
 import Navigation from '../components/navigation'
 import TqMotion from '../components/tq-motion'
+import CustomComponent from '../components/custom-component'
 import Footer from '../components/footer'
 
 const Homepage = (props) => {
@@ -141,7 +142,7 @@ const Homepage = (props) => {
                       type="button"
                       aria-controls="huntley-contact-panel"
                       aria-haspopup="dialog"
-                      className="homepage-thq-btn-elm1 huntley-hero-btn btn-primary btn"
+                      className="homepage-thq-btn-elm huntley-hero-btn btn-primary btn"
                     >
                       <span>Get in touch</span>
                       <svg
@@ -226,81 +227,9 @@ const Homepage = (props) => {
                     loading="eager"
                     decoding="async"
                     alt="Industrial substation conductors, heavy transformers, and structural steel framing"
-                    src="/unsplash-image8-1500w.jpeg"
+                    src="https://images.unsplash.com/photo-1641190063892-52b69c536ab5?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDl8fGxpbmVzbWFufGVufDB8fHx8MTc5MzM5NjYyOHww&amp;ixlib=rb-4.1.0&amp;w=1500"
                     className="huntley-thesis-img"
                   />
-                  <video
-                    src="https://videos.pexels.com/video-files/6755168/6755168-hd_1080_1920_25fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/6755168/pictures/preview-0.jpeg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video1"
-                  ></video>
-                  <video
-                    src="https://videos.pexels.com/video-files/9563523/9563523-uhd_2160_4096_25fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/9563523/pictures/preview-0.jpeg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video2"
-                  ></video>
-                  <video
-                    src="https://videos.pexels.com/video-files/9563523/9563523-uhd_2160_4096_25fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/9563523/pictures/preview-0.jpeg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video3"
-                  ></video>
-                  <video
-                    src="https://videos.pexels.com/video-files/9563523/9563523-uhd_2160_4096_25fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/9563523/pictures/preview-0.jpeg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video4"
-                  ></video>
-                  <video
-                    src="https://videos.pexels.com/video-files/9563523/9563523-uhd_2160_4096_25fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/9563523/pictures/preview-0.jpeg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video5"
-                  ></video>
-                  <video
-                    src="https://videos.pexels.com/video-files/9563523/9563523-uhd_2160_4096_25fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/9563523/pictures/preview-0.jpeg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video6"
-                  ></video>
-                  <video
-                    src="https://videos.pexels.com/video-files/6520274/6520274-hd_1920_1080_24fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/6520274/pictures/preview-0.jpg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video7"
-                  ></video>
-                  <video
-                    src="https://videos.pexels.com/video-files/4941365/4941365-hd_1920_1080_25fps.mp4"
-                    loop
-                    muted
-                    poster="https://images.pexels.com/videos/4941365/pictures/preview-0.jpg"
-                    autoPlay
-                    playsInline
-                    className="homepage-video8"
-                  ></video>
                 </div>
                 <div className="huntley-thesis-text-rail">
                   <div className="huntley-thesis-rail-top">
@@ -472,194 +401,9 @@ const Homepage = (props) => {
             </Link>
           </div>
         </section>
-        <div
-          id="huntley-contact-panel"
-          role="dialog"
-          hidden
-          aria-modal="true"
-          aria-labelledby="huntley-modal-title"
-          className="huntley-contact-modal"
-        >
-          <div
-            id="huntley-contact-backdrop"
-            className="huntley-contact-backdrop"
-          ></div>
-          <div className="huntley-contact-dialog">
-            <div className="huntley-contact-header">
-              <div className="huntley-contact-title-group">
-                <span className="huntley-contact-firm-label">
-                  Huntley Capital Partners
-                </span>
-                <h3
-                  id="huntley-modal-title"
-                  className="huntley-contact-dialog-title"
-                >
-                  Contact
-                </h3>
-              </div>
-              <button
-                id="huntley-close-contact-btn"
-                type="button"
-                aria-label="Close contact panel"
-                className="huntley-modal-close-btn"
-              >
-                <svg
-                  fill="none"
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="20"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
-              </button>
-            </div>
-            <div className="huntley-contact-body">
-              <div
-                id="huntley-reveal-gate"
-                className="huntley-reveal-prompt-state"
-              >
-                <p className="huntley-contact-prompt-copy">
-                  To view direct partner telephone and electronic mail lines,
-                  please confirm below.
-                </p>
-                <button
-                  id="huntley-trigger-reveal-btn"
-                  type="button"
-                  className="huntley-reveal-btn btn-primary btn"
-                >
-                  <span>Show contact information</span>
-                </button>
-              </div>
-              <div
-                id="huntley-revealed-box"
-                hidden
-                className="huntley-revealed-contact-state"
-              >
-                <div
-                  id="partner-ted-container"
-                  className="huntley-partner-contact-row homepage-thq-huntley-partner-contact-row-elm1"
-                ></div>
-                <div className="huntley-partner-divider"></div>
-                <div
-                  id="partner-dan-container"
-                  className="huntley-partner-contact-row homepage-thq-huntley-partner-contact-row-elm2"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CustomComponent></CustomComponent>
         <div className="homepage-container2">
           <div className="homepage-container3">
-            <Script
-              html={`<script defer data-name="huntley-contact-controller">
-(function(){
-(function() {
-  const panel = document.getElementById('huntley-contact-panel');
-  const backdrop = document.getElementById('huntley-contact-backdrop');
-  const closeBtn = document.getElementById('huntley-close-contact-btn');
-  const heroBtn = document.getElementById('open-contact-hero');
-  const revealTrigger = document.getElementById('huntley-trigger-reveal-btn');
-  const revealGate = document.getElementById('huntley-reveal-gate');
-  const revealedBox = document.getElementById('huntley-revealed-box');
-  const tedContainer = document.getElementById('partner-ted-container');
-  const danContainer = document.getElementById('partner-dan-container');
- 
-  function openPanel() {
-    if (!panel) return;
-    panel.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-  }
- 
-  function closePanel() {
-    if (!panel) return;
-    panel.setAttribute('hidden', '');
-    document.body.style.overflow = '';
-  }
- 
-  if (heroBtn) {
-    heroBtn.addEventListener('click', openPanel);
-  }
- 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closePanel);
-  }
- 
-  if (backdrop) {
-    backdrop.addEventListener('click', closePanel);
-  }
- 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && panel && !panel.hasAttribute('hidden')) {
-      closePanel();
-    }
-  });
- 
-  if (revealTrigger) {
-    revealTrigger.addEventListener('click', function() {
-      if (revealGate) revealGate.setAttribute('hidden', '');
-      if (revealedBox) revealedBox.removeAttribute('hidden');
- 
-      const domain = 'huntleycp.com';
-      const u1 = 'tdemiris';
-      const u2 = 'dpopowski';
-      const e1 = u1 + '@' + domain;
-      const e2 = u2 + '@' + domain;
-      const p1 = '(317) 442-3033';
-      const p1Raw = '+13174423033';
-      const p2 = '(410) 599-4177';
-      const p2Raw = '+14105994177';
- 
-      if (tedContainer && tedContainer.children.length === 0) {
-        tedContainer.innerHTML =
-          '<div class="huntley-partner-meta">' +
-            '<h4 class="huntley-partner-name">Ted Demiris</h4>' +
-            '<p class="huntley-partner-role">Co-Founder</p>' +
-          '</div>' +
-          '<div class="huntley-partner-channels">' +
-            '<a class="huntley-channel-link" href="mailto:' + e1 + '">' +
-              '<span class="huntley-channel-label">EMAIL</span>' +
-              '<span class="huntley-channel-val">' + e1 + '</span>' +
-            '</a>' +
-            '<a class="huntley-channel-link" href="tel:' + p1Raw + '">' +
-              '<span class="huntley-channel-label">PHONE</span>' +
-              '<span class="huntley-channel-val">' + p1 + '</span>' +
-            '</a>' +
-          '</div>';
-      }
- 
-      if (danContainer && danContainer.children.length === 0) {
-        danContainer.innerHTML =
-          '<div class="huntley-partner-meta">' +
-            '<h4 class="huntley-partner-name">Daniel Popowski</h4>' +
-            '<p class="huntley-partner-role">Co-Founder</p>' +
-          '</div>' +
-          '<div class="huntley-partner-channels">' +
-            '<a class="huntley-channel-link" href="mailto:' + e2 + '">' +
-              '<span class="huntley-channel-label">EMAIL</span>' +
-              '<span class="huntley-channel-val">' + e2 + '</span>' +
-            '</a>' +
-            '<a class="huntley-channel-link" href="tel:' + p2Raw + '">' +
-              '<span class="huntley-channel-label">PHONE</span>' +
-              '<span class="huntley-channel-val">' + p2 + '</span>' +
-            '</a>' +
-          '</div>';
-      }
-    });
-  }
-})();
-})();
-</script>`}
-            ></Script>
-          </div>
-        </div>
-        <div className="homepage-container4">
-          <div className="homepage-container5">
             <Script
               html={`<style>
 :where(img, picture, video, canvas) {
@@ -712,7 +456,7 @@ const Homepage = (props) => {
           </div>
         </div>
         <div>
-          <div className="homepage-container7">
+          <div className="homepage-container5">
             <Script
               html={`<style>
 a.home-leadership-link:hover {
@@ -722,8 +466,8 @@ a.home-leadership-link:hover {
             ></Script>
           </div>
         </div>
-        <div className="homepage-container8">
-          <div className="homepage-container9">
+        <div className="homepage-container6">
+          <div className="homepage-container7">
             <Script
               html={`<script>
 (function(){(function(){document.addEventListener('click',function(event){var target=event.target;if(!(target instanceof Element))return;var trigger=target.closest('#question-open-contact');if(!trigger)return;var existing=document.getElementById('open-contact-hero');if(existing)existing.click();});})();})()
@@ -760,7 +504,7 @@ a.home-leadership-link:hover {
             color: var(--color-surface);
             font-size: 60px;
           }
-          .homepage-thq-btn-elm1 {
+          .homepage-thq-btn-elm {
             color: var(--color-primary);
             border: 1px solid var(--color-primary);
             padding: 0 20px;
@@ -776,18 +520,18 @@ a.home-leadership-link:hover {
             text-transform: none;
             background-color: #ffffff;
           }
-          .homepage-thq-btn-elm1:hover {
+          .homepage-thq-btn-elm:hover {
             color: var(--color-primary);
             transform: none;
             box-shadow: none;
             border-color: var(--color-primary);
             background-color: #f5f7fa;
           }
-          .homepage-thq-btn-elm1:active {
+          .homepage-thq-btn-elm:active {
             transform: none;
             box-shadow: none;
           }
-          .homepage-thq-btn-elm1:focus-visible {
+          .homepage-thq-btn-elm:focus-visible {
             outline: 2px solid var(--color-primary);
             outline-offset: 2px;
           }
@@ -803,38 +547,6 @@ a.home-leadership-link:hover {
             font-family: var(--font-family-body);
             font-weight: var(--font-weight-body);
             line-height: var(--line-height-body);
-          }
-          .homepage-video1 {
-            width: 320px;
-            height: 180px;
-          }
-          .homepage-video2 {
-            width: 320px;
-            height: 180px;
-          }
-          .homepage-video3 {
-            width: 320px;
-            height: 180px;
-          }
-          .homepage-video4 {
-            width: 320px;
-            height: 180px;
-          }
-          .homepage-video5 {
-            width: 320px;
-            height: 180px;
-          }
-          .homepage-video6 {
-            width: 320px;
-            height: 180px;
-          }
-          .homepage-video7 {
-            width: 320px;
-            height: 180px;
-          }
-          .homepage-video8 {
-            width: 320px;
-            height: 180px;
           }
           .homepage-thq-home-match-label-elm {
             margin: 0;
@@ -891,19 +603,13 @@ a.home-leadership-link:hover {
           .homepage-container3 {
             display: contents;
           }
-          .homepage-container4 {
-            display: none;
-          }
           .homepage-container5 {
             display: contents;
           }
-          .homepage-container7 {
-            display: contents;
-          }
-          .homepage-container8 {
+          .homepage-container6 {
             display: none;
           }
-          .homepage-container9 {
+          .homepage-container7 {
             display: contents;
           }
           @media (max-width: 991px) {
@@ -951,14 +657,6 @@ a.home-leadership-link:hover {
               font-size: 16px;
               text-align: center;
               line-height: 1.4;
-            }
-            .homepage-thq-huntley-partner-contact-row-elm1 {
-              font-size: 15px;
-              line-height: 1.5;
-            }
-            .homepage-thq-huntley-partner-contact-row-elm2 {
-              font-size: 15px;
-              line-height: 1.5;
             }
           }
           @media (max-width: 479px) {
