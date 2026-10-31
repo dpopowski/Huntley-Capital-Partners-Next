@@ -98,7 +98,7 @@ const CustomComponent = (props) => {
               id="huntley-contact-controller-host"
               html={`<script defer data-name="huntley-contact-controller">
 (function(){
-  var version = 3;
+  var version = 4;
   var existing = window.__huntleyContactController;
   if (existing && existing.version === version) { existing.reconcile(); return; }
   var oldHost = existing && (existing.host || existing.active && existing.active.host);
@@ -115,7 +115,7 @@ const CustomComponent = (props) => {
   var previousHtmlOverflowPriority = '';
   var observer = null;
   var api;
-  var triggerSelector = '#open-contact-hero, #question-open-contact, .huntley-contact-trigger, [data-contact-trigger], #huntley-contact-open, #huntley-contact-label-open, a[href="#contact"], .navigation-tablet-contact[href="/contact"], .navigation-overlay-link[href="/contact"]';
+  var triggerSelector = '#open-contact-hero, #question-open-contact, .huntley-contact-trigger, [data-contact-trigger], #huntley-contact-open, #huntley-contact-label-open, a[href="#contact"]';
 
   function makeParts(host, panel) {
     return {host:host, panel:panel, backdrop:panel.querySelector('#huntley-contact-backdrop'), close:panel.querySelector('#huntley-close-contact-btn'), reveal:panel.querySelector('#huntley-trigger-reveal-btn'), gate:panel.querySelector('#huntley-reveal-gate'), revealed:panel.querySelector('#huntley-revealed-box'), ted:panel.querySelector('#partner-ted-container'), dan:panel.querySelector('#partner-dan-container')};
@@ -198,20 +198,11 @@ const CustomComponent = (props) => {
     if (previousFocus && previousFocus.isConnected && typeof previousFocus.focus === 'function') previousFocus.focus();
     previousFocus = null;
   }
-  function normalizedLabel(node) {
-    var text = node.textContent || '', result = '', pendingSpace = false;
-    for (var i = 0; i < text.length; i++) {
-      var code = text.charCodeAt(i);
-      if (code <= 32) { if (result) pendingSpace = true; }
-      else { if (pendingSpace) result += ' '; result += text.charAt(i).toLowerCase(); pendingSpace = false; }
-    }
-    return result;
-  }
   function isTrigger(node) {
     if (!node || !node.closest) return false;
+    if (node.closest('a[data-contact-navigation="true"]')) return false;
     var item = node.closest(triggerSelector);
     if (!item) return false;
-    if (item.matches('.navigation-tablet-contact[href="/contact"], .navigation-overlay-link[href="/contact"]')) return normalizedLabel(item) === 'contact';
     if (item.matches('a[href="#contact"]')) return true;
     if (item.matches('#huntley-contact-label-open')) return window.matchMedia('(max-width: 767px)').matches;
     if (item.matches('#open-contact-hero, #question-open-contact, .huntley-contact-trigger, [data-contact-trigger], #huntley-contact-open')) return true;

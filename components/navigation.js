@@ -36,7 +36,10 @@ const Navigation = (props) => {
               </div>
               <div className="navigation-actions">
                 <Link href="/contact">
-                  <a className="navigation-link4 navigation-tablet-contact">
+                  <a
+                    data-contact-navigation="true"
+                    className="navigation-link4 navigation-tablet-contact"
+                  >
                     Contact
                   </a>
                 </Link>
@@ -114,7 +117,10 @@ const Navigation = (props) => {
                     </a>
                   </Link>
                   <Link href="/contact">
-                    <a className="navigation-link8 navigation-overlay-link">
+                    <a
+                      data-contact-navigation="true"
+                      className="navigation-link8 navigation-overlay-link"
+                    >
                       Contact
                     </a>
                   </Link>
